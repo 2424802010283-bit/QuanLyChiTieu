@@ -141,6 +141,7 @@
             this.btnGiaoDich.Text = "Giao Dịch";
             this.btnGiaoDich.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnGiaoDich.TextOffset = new System.Drawing.Point(10, 0);
+            this.btnGiaoDich.Click += new System.EventHandler(this.btnGiaoDich_Click);
             // 
             // btnThuNhap
             // 
@@ -325,6 +326,7 @@
             this.btnThongKe.Text = "Thống kê";
             this.btnThongKe.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnThongKe.TextOffset = new System.Drawing.Point(10, 0);
+            this.btnThongKe.Click += new System.EventHandler(this.btnThongKe_Click);
             // 
             // btnCaiDat
             // 

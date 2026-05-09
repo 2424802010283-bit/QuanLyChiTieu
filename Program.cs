@@ -15,7 +15,7 @@ namespace QuanLyChiTieu
             Application.SetCompatibleTextRenderingDefault(false);
 
             // Đã bỏ dòng Excel License để tránh lỗi Exception như trong ảnh bạn gửi
-            Application.Run(new frmGiaoDich());
+            Application.Run(new frmMain());
         }
 
     }

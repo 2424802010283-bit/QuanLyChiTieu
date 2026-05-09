@@ -69,6 +69,12 @@ namespace QuanLyChiTieu
             OpenChildForm(new frmCaiDat());
         }
 
+        
+
+
+        // Nút Giao dịch bây giờ sẽ dùng chung hàm OpenChildForm để đồng bộ
+        
+
         private void btnThongKe_Click(object sender, EventArgs e)
         {
             OpenChildForm(new frmThongKe());
@@ -77,6 +83,7 @@ namespace QuanLyChiTieu
         private void btnGiaoDich_Click(object sender, EventArgs e)
         {
             OpenChildForm(new frmGiaoDich());
+
         }
     }
     }
