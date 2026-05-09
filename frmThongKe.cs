@@ -16,7 +16,7 @@ namespace QuanLyChiTieu
         public frmThongKe()
         {
             InitializeComponent();
-            // Ensure chart is drawn when form is created (Designer did not wire Load event)
+            // Đảm bảo biểu đồ được vẽ khi khởi tạo Form
             VeBieuDo();
         }
         private void frmThongKe_Load(object sender, EventArgs e)
@@ -34,14 +34,14 @@ namespace QuanLyChiTieu
             chartChiTieu.Titles.Add("PHÂN TÍCH CHI TIÊU THEO GHI CHÚ");
 
             Series s = new Series("ChiTieu");
-            s.ChartType = SeriesChartType.Pie;
-            // Ensure the series targets existing chart area and legend
+            s.ChartType = SeriesChartType.Doughnut; // Đổi thành Doughnut cho hiện đại
+
             if (chartChiTieu.ChartAreas.Count > 0)
                 s.ChartArea = chartChiTieu.ChartAreas[0].Name;
             if (chartChiTieu.Legends.Count > 0)
                 s.Legend = chartChiTieu.Legends[0].Name;
 
-            if (dt != null && dt.Rows.Count > 0)
+            // Gom nhóm các Ghi chú giống nhau lại để cộng tổng tiền
             {
                 // SQL của bạn dùng "GhiChu" và "SoTien"
                 // Ta sẽ gom nhóm các Ghi chú giống nhau lại để cộng tổng tiền
@@ -56,12 +56,12 @@ namespace QuanLyChiTieu
                 foreach (var item in data)
                 {
                     int i = s.Points.AddXY(item.Ten, item.Tien);
-                    s.Points[i].Label = "#PERCENT{P1}"; // Hiện %
-                    s.Points[i].LegendText = item.Ten; // Hiện tên ở bảng chú thích
+                s.Points[i].Label = "#PERCENT{P1}"; // Hiện phần trăm %
+                s.Points[i].LegendText = item.Ten;   // Hiện tên ở bảng chú thích
                 }
                 chartChiTieu.Series.Add(s);
             }
-            else
+
             {
                 chartChiTieu.Titles.Add("Chưa có dữ liệu giao dịch!");
             }

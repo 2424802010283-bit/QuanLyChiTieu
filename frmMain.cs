@@ -59,10 +59,6 @@ namespace QuanLyChiTieu
             OpenChildForm(new frmTongQuan());
         }
 
-        private void btnTongQuan_Click_1(object sender, EventArgs e)
-        {
-            OpenChildForm(new frmTongQuan());
-        }
 
         private void btnCaiDat_Click(object sender, EventArgs e)
         {

@@ -21,7 +21,6 @@ namespace QuanLyChiTieu.BLL
         }
         public bool LuuDanhMuc(DanhMucDTO dm)
         {
-            // Gọi sang DAL để thực hiện câu lệnh Insert
             return dal.ThemDanhMuc(dm);
         }
 
