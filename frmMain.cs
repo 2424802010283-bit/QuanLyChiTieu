@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using QuanLyChiTieu.DTO;
+using OfficeOpenXml; // Thêm thư viện này để cấu hình bản quyền
 
 namespace QuanLyChiTieu
 {
@@ -10,8 +11,7 @@ namespace QuanLyChiTieu
 
         public frmMain()
         {
-            InitializeComponent();
-        }
+            InitializeComponent();        }
 
         // Constructor overload để nhận thông tin người dùng từ form đăng nhập
         public frmMain(NguoiDungDTO user) : this()
@@ -59,6 +59,10 @@ namespace QuanLyChiTieu
             OpenChildForm(new frmTongQuan());
         }
 
+        private void btnTongQuan_Click_1(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmTongQuan());
+        }
 
         private void btnCaiDat_Click(object sender, EventArgs e)
         {
@@ -69,5 +73,12 @@ namespace QuanLyChiTieu
         {
             OpenChildForm(new frmThongKe());
         }
+
+
+        // Nút Giao dịch bây giờ sẽ dùng chung hàm OpenChildForm để đồng bộ
+        private void btnGiaoDich_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmGiaoDich());
+        }
     }
-}
+    }

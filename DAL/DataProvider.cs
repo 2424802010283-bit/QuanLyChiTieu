@@ -2,17 +2,17 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace QuanLyChiTieu.DAL
 {
     public class DataProvider
     {
-        // Khởi tạo Singleton: Đảm bảo chỉ có 1 luồng kết nối CSDL duy nhất chạy trong RAM
+        // Singleton: Đảm bảo chỉ có 1 instance duy nhất
         private static DataProvider instance;
         public static DataProvider Instance
         {
             get { if (instance == null) instance = new DataProvider(); return instance; }
-            private set { instance = value; }
         }
 
         private DataProvider() { }
@@ -20,7 +20,27 @@ namespace QuanLyChiTieu.DAL
         // Đọc chuỗi kết nối từ App.config
         private string connectionString = ConfigurationManager.ConnectionStrings["ChuoiKetNoi"].ConnectionString;
 
-        // Xử lý thuật toán truy vấn trả về dạng Bảng (SELECT)
+        // ✅ FIX: Dùng Regex để tìm tham số @, tránh bug khi dùng Split(' ')
+        private void GanThamSo(SqlCommand command, string query, object[] parameter)
+        {
+            if (parameter == null) return;
+            // Tìm tất cả tham số @tenBiến trong câu SQL (chỉ lấy lần xuất hiện đầu tiên mỗi tên)
+            var matches = Regex.Matches(query, @"@\w+");
+            int i = 0;
+            foreach (Match match in matches)
+            {
+                if (i >= parameter.Length) break;
+                string tenThamSo = match.Value;
+                // Tránh gán trùng tên tham số (ví dụ @key xuất hiện 2 lần trong LIKE)
+                if (!command.Parameters.Contains(tenThamSo))
+                {
+                    command.Parameters.AddWithValue(tenThamSo, parameter[i] ?? System.DBNull.Value);
+                    i++;
+                }
+            }
+        }
+
+        // SELECT - trả về DataTable
         public DataTable ExecuteQuery(string query, object[] parameter = null)
         {
             DataTable data = new DataTable();
@@ -28,27 +48,14 @@ namespace QuanLyChiTieu.DAL
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand(query, connection);
-
-                if (parameter != null)
-                {
-                    string[] listPara = query.Split(' ');
-                    int i = 0;
-                    foreach (string item in listPara)
-                    {
-                        if (item.Contains('@'))
-                        {
-                            command.Parameters.AddWithValue(item, parameter[i]);
-                            i++;
-                        }
-                    }
-                }
+                GanThamSo(command, query, parameter);
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
                 adapter.Fill(data);
             }
             return data;
         }
 
-        // Xử lý thuật toán Thêm, Sửa, Xóa (INSERT, UPDATE, DELETE)
+        // INSERT / UPDATE / DELETE - trả về số dòng bị ảnh hưởng
         public int ExecuteNonQuery(string query, object[] parameter = null)
         {
             int data = 0;
@@ -56,34 +63,21 @@ namespace QuanLyChiTieu.DAL
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand(query, connection);
-
-                if (parameter != null)
-                {
-                    string[] listPara = query.Split(' ');
-                    int i = 0;
-                    foreach (string item in listPara)
-                    {
-                        if (item.Contains('@'))
-                        {
-                            command.Parameters.AddWithValue(item, parameter[i]);
-                            i++;
-                        }
-                    }
-                }
+                GanThamSo(command, query, parameter);
                 data = command.ExecuteNonQuery();
             }
             return data;
         }
 
-        // Xử lý đếm hoặc tính tổng (SUM, COUNT)
+        // SUM / COUNT - trả về giá trị đơn
         public object ExecuteScalar(string query, object[] parameter = null)
         {
-            object data = 0;
+            object data = null;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand(query, connection);
-                // ... (Logic gán tham số @ tương tự như trên) ...
+                GanThamSo(command, query, parameter);
                 data = command.ExecuteScalar();
             }
             return data;

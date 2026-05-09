@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 namespace QuanLyChiTieu
 {
-    public partial class Dangnhap : Form
+    public partial class frmlogin : Form
     {
-        public Dangnhap()
+        public frmlogin()
         {
             InitializeComponent();
     

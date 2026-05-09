@@ -13,7 +13,10 @@ namespace QuanLyChiTieu
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain());
+
+            // Đã bỏ dòng Excel License để tránh lỗi Exception như trong ảnh bạn gửi
+            Application.Run(new frmGiaoDich());
         }
+
     }
 }

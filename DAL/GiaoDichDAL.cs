@@ -12,62 +12,81 @@ namespace QuanLyChiTieu.DAL
             get { if (instance == null) instance = new GiaoDichDAL(); return instance; }
         }
 
-        // Trả về danh sách tất cả giao dịch (dùng bởi BLL)
+        // Lấy toàn bộ danh sách giao dịch
         public DataTable LayDanhSachGiaoDich()
         {
             string query = "SELECT * FROM GiaoDich ORDER BY NgayGD DESC";
             return DataProvider.Instance.ExecuteQuery(query);
         }
 
-        // Trả về tổng chi tiêu trong tháng hiện tại (dùng bởi BLL)
+        // Lấy tổng chi tiêu tháng hiện tại
         public long LayTongChiTieuThangNay()
         {
             string query = "SELECT SUM(SoTien) FROM GiaoDich WHERE MONTH(NgayGD) = MONTH(GETDATE()) AND YEAR(NgayGD) = YEAR(GETDATE())";
             DataTable dt = DataProvider.Instance.ExecuteQuery(query);
-            if (dt.Rows.Count > 0 && dt.Rows[0][0] != DBNull.Value && dt.Rows[0][0].ToString() != "")
+
+            // ✅ FIX: Kiểm tra DBNull đúng cách
+            if (dt.Rows.Count > 0 && dt.Rows[0][0] != DBNull.Value)
             {
                 try
                 {
-                    return Convert.ToInt64(dt.Rows[0][0]);
+                    return Convert.ToInt64(Math.Round(Convert.ToDouble(dt.Rows[0][0])));
                 }
                 catch
                 {
-                    // Nếu DB trả về số thập phân, chuyển về long an toàn
-                    return Convert.ToInt64(Math.Round(Convert.ToDouble(dt.Rows[0][0])));
+                    return 0;
                 }
             }
             return 0;
         }
 
-        // Hỗ trợ BLL.ThemGiaoDich(soTien, ghiChu)
-        // Lưu ý: vì chưa có thông tin danh mục trong Smart Input, đặt mặc định MaDanhMuc = 1
+        // Thêm giao dịch nhanh (Smart Input - chỉ cần số tiền và ghi chú)
         public bool ThemGiaoDich(long soTien, string ghiChu)
         {
             GiaoDichDTO gd = new GiaoDichDTO()
             {
                 SoTien = soTien,
                 GhiChu = ghiChu,
-                MaDanhMuc = 1 // mặc định nếu chưa chọn danh mục
+                MaDanhMuc = 1 // Mặc định nếu chưa chọn danh mục
             };
-
             return ThemGiaoDich(gd);
         }
 
+        // Thêm giao dịch đầy đủ thông tin
         public bool ThemGiaoDich(GiaoDichDTO gd)
         {
-            string query = "INSERT INTO GiaoDich (SoTien, GhiChu, MaDanhMuc, NgayGD) VALUES ( @SoTien , @GhiChu , @MaDanhMuc , GETDATE() )";
+            string query = "INSERT INTO GiaoDich (SoTien, GhiChu, MaDanhMuc, NgayGD) VALUES (@SoTien, @GhiChu, @MaDanhMuc, GETDATE())";
             int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { gd.SoTien, gd.GhiChu, gd.MaDanhMuc });
             return result > 0;
         }
 
-        // Truy vấn tính tổng chi tiêu theo Danh Mục trong tháng hiện tại
+        // Tổng chi theo danh mục trong tháng
         public decimal LayTongChiTheoDanhMucThangNay(int maDanhMuc)
         {
             string query = "SELECT SUM(SoTien) FROM GiaoDich WHERE MaDanhMuc = @MaDM AND MONTH(NgayGD) = MONTH(GETDATE()) AND YEAR(NgayGD) = YEAR(GETDATE())";
             DataTable dt = DataProvider.Instance.ExecuteQuery(query, new object[] { maDanhMuc });
-            if (dt.Rows.Count > 0 && dt.Rows[0][0].ToString() != "")
+
+            // ✅ FIX: Kiểm tra DBNull đúng cách
+            if (dt.Rows.Count > 0 && dt.Rows[0][0] != DBNull.Value)
                 return Convert.ToDecimal(dt.Rows[0][0]);
             return 0;
+        }
+
+        // ✅ FIX: Sửa bug tham số thừa khi loai = "Tất cả"
+        public DataTable TimKiemGiaoDich(string keywords, string loai)
+        {
+            bool coLoc = !string.IsNullOrEmpty(loai) && loai != "Tất cả";
+
+            string query = "SELECT * FROM GiaoDich WHERE (GhiChu LIKE @key OR CAST(SoTien AS NVARCHAR) LIKE @key)";
+            if (coLoc)
+                query += " AND LoaiGiaoDich = @loai";
+
+            // ✅ Chỉ truyền @loai vào parameter khi câu SQL thực sự dùng @loai
+            object[] parameter = coLoc
+                ? new object[] { "%" + keywords + "%", loai }
+                : new object[] { "%" + keywords + "%" };
+
+            return DataProvider.Instance.ExecuteQuery(query, parameter);
         }
     }
 }

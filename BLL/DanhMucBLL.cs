@@ -11,7 +11,8 @@ using System.Configuration; // Đừng quên dòng này nhé!
 // Lấy chuỗi từ App.config
 namespace QuanLyChiTieu.BLL
 {
-    internal class DanhMucBLL
+    // ✅ FIX: Đổi từ internal -> public
+    public class DanhMucBLL
     {
         DanhMucDAL dal = new DanhMucDAL();
 
@@ -19,9 +20,15 @@ namespace QuanLyChiTieu.BLL
         {
             return dal.LayDanhSachDanhMuc();
         }
+
         public bool LuuDanhMuc(DanhMucDTO dm)
         {
             return dal.ThemDanhMuc(dm);
+        }
+
+        public List<string> LayTenTatCaDanhMuc()
+        {
+            return dal.LayTenTatCaDanhMuc();
         }
 
     }

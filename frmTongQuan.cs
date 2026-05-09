@@ -131,6 +131,7 @@ namespace QuanLyChiTieu
         private void frmTongQuan_Load_1(object sender, EventArgs e)
         {
             frmTongQuan_Load(sender, e);
+
         }
     }
 }

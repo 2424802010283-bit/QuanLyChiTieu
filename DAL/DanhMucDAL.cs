@@ -9,7 +9,7 @@ using System.Configuration; // Dùng để đọc App.config
 using QuanLyChiTieu.DTO;
 namespace QuanLyChiTieu.DAL
 {
-    internal class DanhMucDAL
+    public class DanhMucDAL
     {
         // Lấy chuỗi kết nối cực kỳ chuyên nghiệp
         private string strConn = ConfigurationManager.ConnectionStrings["ChuoiKetNoi"].ConnectionString;

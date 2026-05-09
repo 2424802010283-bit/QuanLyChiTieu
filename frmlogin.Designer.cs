@@ -1,6 +1,6 @@
 ﻿namespace QuanLyChiTieu
 {
-    partial class Dangnhap
+    partial class frmlogin
     {
         /// <summary>
         /// Required designer variable.
