@@ -2,32 +2,19 @@
 using QuanLyChiTieu.DTO;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
 
 namespace QuanLyChiTieu
 {
     public partial class frmDanhMuc : Form
     {
         // Chỉ cần khai báo 1 đối tượng BLL dùng chung cho cả Form
-        DanhMucBLL dmBLL = new DanhMucBLL();
 
         public frmDanhMuc()
         {
             InitializeComponent();
-            // Khởi tạo một số control và nạp dữ liệu ngay khi tạo form
-            // Đảm bảo ComboBox loại danh mục có giá trị để người dùng chọn
-            if (cboLoaiDM != null)
-            {
-                cboLoaiDM.Items.Clear();
-                cboLoaiDM.Items.AddRange(new string[] { "Chi", "Thu" });
-                cboLoaiDM.SelectedIndex = 0;
             }
 
             // Nạp dữ liệu lần đầu
