@@ -130,6 +130,7 @@
             this.btnDangXuat.Text = "Đăng xuất";
             this.btnDangXuat.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnDangXuat.TextOffset = new System.Drawing.Point(10, 0);
+            this.btnDangXuat.Click += new System.EventHandler(this.btnDangXuat_Click);
             // 
             // btnSaoluuvaphuchoi
             // 
@@ -223,6 +224,7 @@
             this.btnBaoCao.Text = "Báo Cáo";
             this.btnBaoCao.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnBaoCao.TextOffset = new System.Drawing.Point(10, 0);
+            this.btnBaoCao.Click += new System.EventHandler(this.btnBaoCao_Click);
             // 
             // btnDanhMuc
             // 
@@ -246,6 +248,7 @@
             this.btnDanhMuc.Text = "Danh Mục";
             this.btnDanhMuc.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnDanhMuc.TextOffset = new System.Drawing.Point(10, 0);
+            this.btnDanhMuc.Click += new System.EventHandler(this.btnDanhMuc_Click);
             // 
             // btnTaiKhoan
             // 
@@ -269,6 +272,7 @@
             this.btnTaiKhoan.Text = "Tài Khoản";
             this.btnTaiKhoan.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnTaiKhoan.TextOffset = new System.Drawing.Point(10, 0);
+            this.btnTaiKhoan.Click += new System.EventHandler(this.btnTaiKhoan_Click);
             // 
             // btnMucTieu
             // 
@@ -292,6 +296,7 @@
             this.btnMucTieu.Text = "Mục Tiêu";
             this.btnMucTieu.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnMucTieu.TextOffset = new System.Drawing.Point(10, 0);
+            this.btnMucTieu.Click += new System.EventHandler(this.btnMucTieu_Click);
             // 
             // btnNganSach
             // 
@@ -315,6 +320,7 @@
             this.btnNganSach.Text = "Ngân Sách";
             this.btnNganSach.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnNganSach.TextOffset = new System.Drawing.Point(10, 0);
+            this.btnNganSach.Click += new System.EventHandler(this.btnNganSach_Click);
             // 
             // btnChiTieu
             // 
@@ -338,6 +344,7 @@
             this.btnChiTieu.Text = "Chi Tiêu";
             this.btnChiTieu.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnChiTieu.TextOffset = new System.Drawing.Point(10, 0);
+            this.btnChiTieu.Click += new System.EventHandler(this.btnChiTieu_Click);
             // 
             // btnThuNhap
             // 
@@ -361,6 +368,7 @@
             this.btnThuNhap.Text = "Thu Nhập";
             this.btnThuNhap.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnThuNhap.TextOffset = new System.Drawing.Point(10, 0);
+            this.btnThuNhap.Click += new System.EventHandler(this.btnThuNhap_Click);
             // 
             // btnGiaoDich
             // 
@@ -408,6 +416,7 @@
             this.btnDashboard.Text = "Tổng quan";
             this.btnDashboard.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnDashboard.TextOffset = new System.Drawing.Point(10, 0);
+            this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
             // 
             // pnBody
             // 

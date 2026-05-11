@@ -37,27 +37,28 @@ namespace QuanLyChiTieu
         {
             try
             {
-                // 1. Thu thập dữ liệu từ 3 ô nhập
+                // 1. Thu thập dữ liệu và khởi tạo đối tượng đúng cú pháp
                 MucTieuDTO mt = new MucTieuDTO
                 {
                     TenMucTieu = txtTenMucTieu.Text.Trim(),
                     SoTienCanDat = decimal.Parse(txtSoTienMucTieu.Text),
                     HanChot = dtpHanChot.Value,
-                    SoTienHienCo = 0, // Mới tạo thì hiện có bằng 0
-                    MaNguoiDung = maNguoiDungHienTai
+                    SoTienHienCo = 0,
+                    // Gán trực tiếp Session vào đây, bỏ cái dòng mt.MaNguoiDung cũ đi
+                    MaNguoiDung = Session.MaNguoiDung
                 };
 
                 // 2. Lưu vào DB thông qua BLL
                 if (_bll.Them(mt))
                 {
-                    MessageBox.Show("Đã thêm mục tiêu mới! Chúc bạn sớm hoàn thành.");
-                    LoadData(); // Tải lại bảng
-                    ClearInput(); // Xóa sạch ô nhập để nhập cái mới
+                    MessageBox.Show("Đã thêm mục tiêu mới! Chúc bạn sớm hoàn thành.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadData();
+                    ClearInput();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Vui lòng kiểm tra lại số tiền nhập vào!");
+                MessageBox.Show("Vui lòng kiểm tra lại số tiền nhập vào hoặc kết nối mạng!");
             }
         }
 

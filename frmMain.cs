@@ -66,6 +66,10 @@ namespace QuanLyChiTieu
         {
             OpenChildForm(new frmTongQuan());
         }
+        private void btnTaiKhoan_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmTaiKhoan());
+        }
 
         // Mở Giao Dịch
         private void btnGiaoDich_Click(object sender, EventArgs e)

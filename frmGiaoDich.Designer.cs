@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGiaoDich));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlTop = new Guna.UI2.WinForms.Guna2Panel();
             this.btnDong = new Guna.UI2.WinForms.Guna2Button();
             this.btnXuat = new Guna.UI2.WinForms.Guna2Button();
@@ -59,12 +59,6 @@
             this.lblTongCong = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.dgvGiaoDich = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.NgayGiaoDich = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Loai = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TenDanhMuc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TaiKhoan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SoTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MoTa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtTimKiem = new Guna.UI2.WinForms.Guna2TextBox();
             this.pnlTop.SuspendLayout();
             this.guna2GroupBox1.SuspendLayout();
@@ -357,6 +351,10 @@
             this.cboLoaiGiaoDich.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.cboLoaiGiaoDich.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.cboLoaiGiaoDich.ItemHeight = 30;
+            this.cboLoaiGiaoDich.Items.AddRange(new object[] {
+            "Thu nhập",
+            "Chi tiêu",
+            "Chuyển tiền"});
             this.cboLoaiGiaoDich.Location = new System.Drawing.Point(127, 141);
             this.cboLoaiGiaoDich.Name = "cboLoaiGiaoDich";
             this.cboLoaiGiaoDich.Size = new System.Drawing.Size(200, 36);
@@ -483,33 +481,26 @@
             // 
             // dgvGiaoDich
             // 
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            this.dgvGiaoDich.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(237)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvGiaoDich.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
+            this.dgvGiaoDich.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(237)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvGiaoDich.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvGiaoDich.ColumnHeadersHeight = 22;
             this.dgvGiaoDich.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.dgvGiaoDich.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.NgayGiaoDich,
-            this.Loai,
-            this.TenDanhMuc,
-            this.TaiKhoan,
-            this.SoTien,
-            this.MoTa});
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvGiaoDich.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvGiaoDich.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvGiaoDich.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvGiaoDich.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.dgvGiaoDich.Location = new System.Drawing.Point(0, 88);
@@ -542,42 +533,6 @@
             this.dgvGiaoDich.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
             this.dgvGiaoDich.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvGiaoDich.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGiaoDich_CellClick);
-            // 
-            // NgayGiaoDich
-            // 
-            this.NgayGiaoDich.HeaderText = "Ngày";
-            this.NgayGiaoDich.MinimumWidth = 6;
-            this.NgayGiaoDich.Name = "NgayGiaoDich";
-            // 
-            // Loai
-            // 
-            this.Loai.HeaderText = "Loại";
-            this.Loai.MinimumWidth = 6;
-            this.Loai.Name = "Loai";
-            // 
-            // TenDanhMuc
-            // 
-            this.TenDanhMuc.HeaderText = "Danh mục";
-            this.TenDanhMuc.MinimumWidth = 6;
-            this.TenDanhMuc.Name = "TenDanhMuc";
-            // 
-            // TaiKhoan
-            // 
-            this.TaiKhoan.HeaderText = "Tài khoản";
-            this.TaiKhoan.MinimumWidth = 6;
-            this.TaiKhoan.Name = "TaiKhoan";
-            // 
-            // SoTien
-            // 
-            this.SoTien.HeaderText = "Số tiền";
-            this.SoTien.MinimumWidth = 6;
-            this.SoTien.Name = "SoTien";
-            // 
-            // MoTa
-            // 
-            this.MoTa.HeaderText = "Mô tả";
-            this.MoTa.MinimumWidth = 6;
-            this.MoTa.Name = "MoTa";
             // 
             // txtTimKiem
             // 
@@ -655,12 +610,6 @@
         private Guna.UI2.WinForms.Guna2DataGridView dgvGiaoDich;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NgayGiaoDich;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Loai;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TenDanhMuc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TaiKhoan;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SoTien;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MoTa;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblTongCong;
     }
 }
