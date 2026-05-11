@@ -1,6 +1,7 @@
-﻿using System;
+﻿using OfficeOpenXml; // Thêm thư viện này để cấu hình bản quyền
+using QuanLyChiTieu.DTO;
+using System;
 using System.Windows.Forms;
-
 namespace QuanLyChiTieu
 {
     public partial class frmMain : Form
@@ -57,10 +58,6 @@ namespace QuanLyChiTieu
             OpenChildForm(new frmTongQuan());
         }
 
-        private void btnTongQuan_Click_1(object sender, EventArgs e)
-        {
-            OpenChildForm(new frmTongQuan());
-        }
 
         private void btnCaiDat_Click(object sender, EventArgs e)
         {
