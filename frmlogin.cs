@@ -26,7 +26,7 @@ namespace QuanLyChiTieu
 
             if (user != null)
             {
-                MessageBox.Show("Chào " + user.HoTen + " (" + user.VaiTro + ")");
+                MessageBox.Show("Chào " + user.HoTen );
                 this.Hide();
                 frmMain main = new frmMain(user); // Truyền user sang Form chính để phân quyền
                 main.ShowDialog();

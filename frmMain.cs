@@ -11,6 +11,7 @@ namespace QuanLyChiTieu
         public frmMain()
         {
             InitializeComponent();
+        }
 
         // Constructor overload để nhận thông tin người dùng từ form đăng nhập
         public frmMain(NguoiDungDTO user) : this()
@@ -58,17 +59,17 @@ namespace QuanLyChiTieu
             OpenChildForm(new frmTongQuan());
         }
 
-
+        
         private void btnCaiDat_Click(object sender, EventArgs e)
         {
             OpenChildForm(new frmCaiDat());
         }
 
-        
+
 
 
         // Nút Giao dịch bây giờ sẽ dùng chung hàm OpenChildForm để đồng bộ
-        
+
 
         private void btnThongKe_Click(object sender, EventArgs e)
         {
@@ -81,4 +82,4 @@ namespace QuanLyChiTieu
 
         }
     }
-    }
+}

@@ -1,91 +1,192 @@
-using System;
+﻿using QuanLyChiTieu.DTO;
 using System.Data;
+using System.Data.SqlClient;
+using System;
+using System.Collections.Generic;
 
+
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Configuration; // Đừng quên dòng này nhé!
+
+using System.Windows.Forms;
+using System.IO;
 namespace QuanLyChiTieu.DAL
 {
     public class GiaoDichDAL
     {
-        private static GiaoDichDAL instance;
-        public static GiaoDichDAL Instance
+        public List<GiaoDichDTO> GetByLoaiVaNgay(int maNguoiDung, string loai, DateTime ngay)
         {
-            get { if (instance == null) instance = new GiaoDichDAL(); return instance; }
-        }
-
-        // Lấy toàn bộ danh sách giao dịch
-        public DataTable LayDanhSachGiaoDich()
-        {
-            string query = "SELECT * FROM GiaoDich ORDER BY NgayGD DESC";
-            return DataProvider.Instance.ExecuteQuery(query);
-        }
-
-        // Lấy tổng chi tiêu tháng hiện tại
-        public long LayTongChiTieuThangNay()
-        {
-            string query = "SELECT SUM(SoTien) FROM GiaoDich WHERE MONTH(NgayGD) = MONTH(GETDATE()) AND YEAR(NgayGD) = YEAR(GETDATE())";
-            DataTable dt = DataProvider.Instance.ExecuteQuery(query);
-
-            // ✅ FIX: Kiểm tra DBNull đúng cách
-            if (dt.Rows.Count > 0 && dt.Rows[0][0] != DBNull.Value)
-            {
-                try
-                {
-                    return Convert.ToInt64(Math.Round(Convert.ToDouble(dt.Rows[0][0])));
-                }
-                catch
-                {
-                    return 0;
-                }
-            }
-            return 0;
-        }
-
-        // Thêm giao dịch nhanh (Smart Input - chỉ cần số tiền và ghi chú)
-        public bool ThemGiaoDich(long soTien, string ghiChu)
-        {
-            GiaoDichDTO gd = new GiaoDichDTO()
-            {
-                SoTien = soTien,
-                GhiChu = ghiChu,
-                MaDanhMuc = 1 // Mặc định nếu chưa chọn danh mục
+            string sql = @"
+                SELECT g.*, d.TenDanhMuc, t.TenTaiKhoan
+                FROM GiaoDich g
+                LEFT JOIN DanhMuc  d ON g.MaDanhMuc  = d.MaDanhMuc
+                LEFT JOIN TaiKhoan t ON g.MaTaiKhoan = t.MaTaiKhoan
+                WHERE g.MaNguoiDung=@Ma AND g.LoaiGiaoDich=@Loai
+                  AND CAST(g.NgayGiaoDich AS DATE)=@Ngay
+                ORDER BY g.NgayGiaoDich DESC";
+            var pms = new SqlParameter[] {
+                new SqlParameter("@Ma",   maNguoiDung),
+                new SqlParameter("@Loai", loai),
+                new SqlParameter("@Ngay", ngay.Date)
             };
-            return ThemGiaoDich(gd);
+            return MapList(DataProvider.ExecuteQuery(sql, pms));
         }
 
-        // Thêm giao dịch đầy đủ thông tin
-        public bool ThemGiaoDich(GiaoDichDTO gd)
+        public List<GiaoDichDTO> GetAll(int maNguoiDung)
         {
-            string query = "INSERT INTO GiaoDich (SoTien, GhiChu, MaDanhMuc, NgayGD) VALUES (@SoTien, @GhiChu, @MaDanhMuc, GETDATE())";
-            int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { gd.SoTien, gd.GhiChu, gd.MaDanhMuc });
-            return result > 0;
+            string sql = @"
+                SELECT g.*, d.TenDanhMuc, t.TenTaiKhoan,
+                       t2.TenTaiKhoan AS TenTaiKhoanNhan
+                FROM GiaoDich g
+                LEFT JOIN DanhMuc  d  ON g.MaDanhMuc      = d.MaDanhMuc
+                LEFT JOIN TaiKhoan t  ON g.MaTaiKhoan     = t.MaTaiKhoan
+                LEFT JOIN TaiKhoan t2 ON g.MaTaiKhoanNhan = t2.MaTaiKhoan
+                WHERE g.MaNguoiDung=@Ma ORDER BY g.NgayGiaoDich DESC";
+            return MapList(DataProvider.ExecuteQuery(sql,
+                new SqlParameter[] { new SqlParameter("@Ma", maNguoiDung) }));
         }
 
-        // Tổng chi theo danh mục trong tháng
-        public decimal LayTongChiTheoDanhMucThangNay(int maDanhMuc)
+        public List<GiaoDichDTO> Search(int maNguoiDung, string keyword)
         {
-            string query = "SELECT SUM(SoTien) FROM GiaoDich WHERE MaDanhMuc = @MaDM AND MONTH(NgayGD) = MONTH(GETDATE()) AND YEAR(NgayGD) = YEAR(GETDATE())";
-            DataTable dt = DataProvider.Instance.ExecuteQuery(query, new object[] { maDanhMuc });
-
-            // ✅ FIX: Kiểm tra DBNull đúng cách
-            if (dt.Rows.Count > 0 && dt.Rows[0][0] != DBNull.Value)
-                return Convert.ToDecimal(dt.Rows[0][0]);
-            return 0;
+            string sql = @"
+                SELECT g.*, d.TenDanhMuc, t.TenTaiKhoan,
+                       t2.TenTaiKhoan AS TenTaiKhoanNhan
+                FROM GiaoDich g
+                LEFT JOIN DanhMuc  d  ON g.MaDanhMuc      = d.MaDanhMuc
+                LEFT JOIN TaiKhoan t  ON g.MaTaiKhoan     = t.MaTaiKhoan
+                LEFT JOIN TaiKhoan t2 ON g.MaTaiKhoanNhan = t2.MaTaiKhoan
+                WHERE g.MaNguoiDung=@Ma
+                  AND (g.MoTa LIKE @Kw OR d.TenDanhMuc LIKE @Kw OR t.TenTaiKhoan LIKE @Kw)
+                ORDER BY g.NgayGiaoDich DESC";
+            var pms = new SqlParameter[] {
+                new SqlParameter("@Ma", maNguoiDung),
+                new SqlParameter("@Kw", "%" + keyword + "%")
+            };
+            return MapList(DataProvider.ExecuteQuery(sql, pms));
         }
 
-        // ✅ FIX: Sửa bug tham số thừa khi loai = "Tất cả"
-        public DataTable TimKiemGiaoDich(string keywords, string loai)
+        public int Them(GiaoDichDTO gd)
         {
-            bool coLoc = !string.IsNullOrEmpty(loai) && loai != "Tất cả";
+            string sql = @"
+                INSERT INTO GiaoDich(MaNguoiDung,MaTaiKhoan,MaTaiKhoanNhan,MaDanhMuc,
+                                     LoaiGiaoDich,NgayGiaoDich,SoTien,MoTa)
+                VALUES(@Ma,@MaTK,@MaTKNhan,@MaDM,@Loai,@Ngay,@SoTien,@MoTa);
+                SELECT SCOPE_IDENTITY();";
+            var pms = new SqlParameter[] {
+                new SqlParameter("@Ma",      gd.MaNguoiDung),
+                new SqlParameter("@MaTK",    gd.MaTaiKhoan),
+                new SqlParameter("@MaTKNhan",(object)gd.MaTaiKhoanNhan ?? DBNull.Value),
+                new SqlParameter("@MaDM",    (object)gd.MaDanhMuc      ?? DBNull.Value),
+                new SqlParameter("@Loai",    gd.LoaiGiaoDich),
+                new SqlParameter("@Ngay",    gd.NgayGiaoDich),
+                new SqlParameter("@SoTien",  gd.SoTien),
+                new SqlParameter("@MoTa",    (object)gd.MoTa           ?? DBNull.Value)
+            };
+            object r = DataProvider.ExecuteScalar(sql, pms);
+            return r != null ? Convert.ToInt32(r) : 0;
+        }
 
-            string query = "SELECT * FROM GiaoDich WHERE (GhiChu LIKE @key OR CAST(SoTien AS NVARCHAR) LIKE @key)";
-            if (coLoc)
-                query += " AND LoaiGiaoDich = @loai";
+        public int Xoa(int maGiaoDich)
+        {
+            return DataProvider.ExecuteNonQuery(
+                "DELETE FROM GiaoDich WHERE MaGiaoDich=@Ma",
+                new SqlParameter[] { new SqlParameter("@Ma", maGiaoDich) });
+        }
 
-            // ✅ Chỉ truyền @loai vào parameter khi câu SQL thực sự dùng @loai
-            object[] parameter = coLoc
-                ? new object[] { "%" + keywords + "%", loai }
-                : new object[] { "%" + keywords + "%" };
+        public decimal GetTong(int maNguoiDung, string loai, int thang, int nam)
+        {
+            string sql = @"SELECT ISNULL(SUM(SoTien),0) FROM GiaoDich
+                           WHERE MaNguoiDung=@Ma AND LoaiGiaoDich=@Loai
+                             AND MONTH(NgayGiaoDich)=@Thang AND YEAR(NgayGiaoDich)=@Nam";
+            var pms = new SqlParameter[] {
+                new SqlParameter("@Ma",    maNguoiDung),
+                new SqlParameter("@Loai",  loai),
+                new SqlParameter("@Thang", thang),
+                new SqlParameter("@Nam",   nam)
+            };
+            object r = DataProvider.ExecuteScalar(sql, pms);
+            return r == null ? 0 : (decimal)r;
+        }
 
-            return DataProvider.Instance.ExecuteQuery(query, parameter);
+        public DataTable GetThongKeTheoThang(int maNguoiDung, int nam)
+            => DataProvider.ExecuteSP("SP_GetThongKeTheoThang", new SqlParameter[] {
+                new SqlParameter("@MaNguoiDung", maNguoiDung),
+                new SqlParameter("@Nam", nam) });
+
+        public DataTable GetTop5DanhMucChi(int maNguoiDung, int thang, int nam)
+            => DataProvider.ExecuteSP("SP_GetTop5DanhMucChi", new SqlParameter[] {
+                new SqlParameter("@MaNguoiDung", maNguoiDung),
+                new SqlParameter("@Thang", thang),
+                new SqlParameter("@Nam", nam) });
+
+        public List<GiaoDichDTO> GetGanDay(int maNguoiDung, int soLuong = 10)
+            => MapList(DataProvider.ExecuteSP("SP_GetGiaoDichGanDay", new SqlParameter[] {
+                new SqlParameter("@MaNguoiDung", maNguoiDung),
+                new SqlParameter("@SoLuong", soLuong) }));
+
+        public DataTable BaoCao(int maNguoiDung, DateTime tuNgay, DateTime denNgay, string loai = null)
+            => DataProvider.ExecuteSP("SP_BaoCaoGiaoDich", new SqlParameter[] {
+                new SqlParameter("@MaNguoiDung",  maNguoiDung),
+                new SqlParameter("@TuNgay",       tuNgay),
+                new SqlParameter("@DenNgay",      denNgay),
+                new SqlParameter("@LoaiGiaoDich", (object)loai ?? DBNull.Value) });
+
+        // ─── Map ───
+        private List<GiaoDichDTO> MapList(DataTable dt)
+        {
+            var list = new List<GiaoDichDTO>();
+            foreach (DataRow r in dt.Rows) list.Add(MapRow(r));
+            return list;
+        }
+
+        private GiaoDichDTO MapRow(DataRow r)
+        {
+            var gd = new GiaoDichDTO
+            {
+                MaGiaoDich = Col<int>(r, "MaGiaoDich"),
+                MaNguoiDung = Col<int>(r, "MaNguoiDung"),
+                MaTaiKhoan = Col<int>(r, "MaTaiKhoan"),
+                LoaiGiaoDich = r["LoaiGiaoDich"].ToString(),
+                NgayGiaoDich = r.Table.Columns.Contains("NgayGiaoDich") && r["NgayGiaoDich"] != DBNull.Value
+                               ? (DateTime)r["NgayGiaoDich"] : DateTime.Now,
+                SoTien = r.Table.Columns.Contains("SoTien") && r["SoTien"] != DBNull.Value
+                               ? (decimal)r["SoTien"] : 0,
+                MoTa = Str(r, "MoTa"),
+                TenDanhMuc = Str(r, "TenDanhMuc"),
+                TenTaiKhoan = Str(r, "TenTaiKhoan"),
+                TenTaiKhoanNhan = Str(r, "TenTaiKhoanNhan")
+            };
+            if (r.Table.Columns.Contains("MaTaiKhoanNhan") && r["MaTaiKhoanNhan"] != DBNull.Value)
+                gd.MaTaiKhoanNhan = (int)r["MaTaiKhoanNhan"];
+            if (r.Table.Columns.Contains("MaDanhMuc") && r["MaDanhMuc"] != DBNull.Value)
+                gd.MaDanhMuc = (int)r["MaDanhMuc"];
+            return gd;
+        }
+
+        private T Col<T>(DataRow r, string col)
+        {
+            if (r.Table.Columns.Contains(col) && r[col] != DBNull.Value) return (T)r[col];
+            return default;
+        }
+        private string Str(DataRow r, string col)
+            => r.Table.Columns.Contains(col) && r[col] != DBNull.Value ? r[col].ToString() : "";
+
+        public int Sua(GiaoDichDTO gd)
+        {
+            string sql = @"UPDATE GiaoDich 
+                   SET MaDanhMuc=@MaDM, NgayGiaoDich=@Ngay, SoTien=@SoTien, MoTa=@MoTa 
+                   WHERE MaGiaoDich=@MaGD";
+            var pms = new System.Data.SqlClient.SqlParameter[] {
+        new System.Data.SqlClient.SqlParameter("@MaGD", gd.MaGiaoDich),
+        new System.Data.SqlClient.SqlParameter("@MaDM", (object)gd.MaDanhMuc ?? DBNull.Value),
+        new System.Data.SqlClient.SqlParameter("@Ngay", gd.NgayGiaoDich),
+        new System.Data.SqlClient.SqlParameter("@SoTien", gd.SoTien),
+        new System.Data.SqlClient.SqlParameter("@MoTa", (object)gd.MoTa ?? DBNull.Value)
+    };
+            return DataProvider.ExecuteNonQuery(sql, pms);
         }
     }
+
 }

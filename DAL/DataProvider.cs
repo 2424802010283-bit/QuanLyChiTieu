@@ -1,83 +1,102 @@
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Configuration; // Đừng quên dòng này nhé!
 
+using System.Windows.Forms;
+using System.IO;
+
+using QuanLyChiTieu.DTO;
+using QuanLyChiTieu.BLL;
 namespace QuanLyChiTieu.DAL
 {
     public class DataProvider
     {
-        // Singleton: Đảm bảo chỉ có 1 instance duy nhất
-        private static DataProvider instance;
-        public static DataProvider Instance
+        // ⚠️ Đổi tên server cho đúng máy bạn
+        private static readonly string connectionString =
+    @"Data Source=LAPTOP-C861HF1M\SQLEXPRESS01;Initial Catalog=QuanLyChiTieu;Integrated Security=True";
+
+        public static SqlConnection GetConnection() => new SqlConnection(connectionString);
+
+        public static DataTable ExecuteQuery(string sql, SqlParameter[] pms = null)
         {
-            get { if (instance == null) instance = new DataProvider(); return instance; }
-        }
-
-        private DataProvider() { }
-
-        // Đọc chuỗi kết nối từ App.config
-        private string connectionString = ConfigurationManager.ConnectionStrings["ChuoiKetNoi"].ConnectionString;
-
-        // ✅ FIX: Dùng Regex để tìm tham số @, tránh bug khi dùng Split(' ')
-        private void GanThamSo(SqlCommand command, string query, object[] parameter)
-        {
-            if (parameter == null) return;
-            // Tìm tất cả tham số @tenBiến trong câu SQL (chỉ lấy lần xuất hiện đầu tiên mỗi tên)
-            var matches = Regex.Matches(query, @"@\w+");
-            int i = 0;
-            foreach (Match match in matches)
+            DataTable dt = new DataTable();
+            try
             {
-                if (i >= parameter.Length) break;
-                string tenThamSo = match.Value;
-                // Tránh gán trùng tên tham số (ví dụ @key xuất hiện 2 lần trong LIKE)
-                if (!command.Parameters.Contains(tenThamSo))
+                using (var conn = GetConnection())
                 {
-                    command.Parameters.AddWithValue(tenThamSo, parameter[i] ?? System.DBNull.Value);
-                    i++;
+                    conn.Open();
+                    using (var cmd = new SqlCommand(sql, conn))
+                    {
+                        if (pms != null) cmd.Parameters.AddRange(pms);
+                        new SqlDataAdapter(cmd).Fill(dt);
+                    }
                 }
             }
+            catch (Exception ex) { MessageBox.Show("Lỗi: " + ex.Message); }
+            return dt;
         }
 
-        // SELECT - trả về DataTable
-        public DataTable ExecuteQuery(string query, object[] parameter = null)
+        public static int ExecuteNonQuery(string sql, SqlParameter[] pms = null)
         {
-            DataTable data = new DataTable();
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            int r = 0;
+            try
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                GanThamSo(command, query, parameter);
-                SqlDataAdapter adapter = new SqlDataAdapter(command);
-                adapter.Fill(data);
+                using (var conn = GetConnection())
+                {
+                    conn.Open();
+                    using (var cmd = new SqlCommand(sql, conn))
+                    {
+                        if (pms != null) cmd.Parameters.AddRange(pms);
+                        r = cmd.ExecuteNonQuery();
+                    }
+                }
             }
-            return data;
+            catch (Exception ex) { MessageBox.Show("Lỗi: " + ex.Message); }
+            return r;
         }
 
-        // INSERT / UPDATE / DELETE - trả về số dòng bị ảnh hưởng
-        public int ExecuteNonQuery(string query, object[] parameter = null)
+        public static object ExecuteScalar(string sql, SqlParameter[] pms = null)
         {
-            int data = 0;
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            object r = null;
+            try
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                GanThamSo(command, query, parameter);
-                data = command.ExecuteNonQuery();
+                using (var conn = GetConnection())
+                {
+                    conn.Open();
+                    using (var cmd = new SqlCommand(sql, conn))
+                    {
+                        if (pms != null) cmd.Parameters.AddRange(pms);
+                        r = cmd.ExecuteScalar();
+                    }
+                }
             }
-            return data;
+            catch (Exception ex) { MessageBox.Show("Lỗi: " + ex.Message); }
+            return r;
         }
 
-        // SUM / COUNT - trả về giá trị đơn
-        public object ExecuteScalar(string query, object[] parameter = null)
+        public static DataTable ExecuteSP(string spName, SqlParameter[] pms = null)
         {
-            object data = null;
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            DataTable dt = new DataTable();
+            try
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                GanThamSo(command, query, parameter);
-                data = command.ExecuteScalar();
+                using (var conn = GetConnection())
+                {
+                    conn.Open();
+                    using (var cmd = new SqlCommand(spName, conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        if (pms != null) cmd.Parameters.AddRange(pms);
+                        new SqlDataAdapter(cmd).Fill(dt);
+                    }
+                }
             }
-            return data;
+            catch (Exception ex) { MessageBox.Show("Lỗi SP: " + ex.Message); }
+            return dt;
         }
     }
 }

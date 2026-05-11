@@ -54,11 +54,11 @@ namespace QuanLyChiTieu
                 dgvListDanhMuc.DataSource = dmBLL.LayDanhSachDanhMuc();
 
                 // Định dạng tiêu đề cột
-                if (dgvListDanhMuc.Columns["MaDM"] != null)
-                    dgvListDanhMuc.Columns["MaDM"].HeaderText = "Mã Danh Mục";
+                if (dgvListDanhMuc.Columns["MaDanhMuc"] != null)
+                    dgvListDanhMuc.Columns["MaDanhMuc"].HeaderText = "Mã Danh Mục";
 
-                dgvListDanhMuc.Columns["TenDM"].HeaderText = "Tên Danh Mục";
-                dgvListDanhMuc.Columns["Loai"].HeaderText = "Loại";
+                dgvListDanhMuc.Columns["TenDanhMuc"].HeaderText = "Tên Danh Mục";
+                dgvListDanhMuc.Columns["LoaiGiaoDich"].HeaderText = "Loại";
 
                 dgvListDanhMuc.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
@@ -74,8 +74,8 @@ namespace QuanLyChiTieu
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dgvListDanhMuc.Rows[e.RowIndex];
-                txtTenDM.Text = row.Cells["TenDM"].Value.ToString();
-                cboLoaiDM.Text = row.Cells["Loai"].Value.ToString();
+                txtTenDM.Text = row.Cells["TenDanhMuc"].Value.ToString();
+                cboLoaiDM.Text = row.Cells["LoaiGiaoDich"].Value.ToString();
             }
         }
 
@@ -83,14 +83,15 @@ namespace QuanLyChiTieu
         {
             if (string.IsNullOrWhiteSpace(txtTenDM.Text))
             {
-                MessageBox.Show("An và Ngọc ơi, vui lòng nhập tên danh mục!");
+                MessageBox.Show("vui lòng nhập tên danh mục!");
                 return;
             }
 
             // 1. Đóng gói dữ liệu vào DTO
             DanhMucDTO dm = new DanhMucDTO();
-            dm.TenDM = txtTenDM.Text.Trim();
-            dm.Loai = cboLoaiDM.Text;
+            // Sửa 2 dòng này
+            dm.TenDanhMuc = txtTenDM.Text.Trim();
+            dm.LoaiGiaoDich = cboLoaiDM.Text;
 
             // 2. Gọi BLL xử lý
             if (dmBLL.LuuDanhMuc(dm)) // Đảm bảo hàm LuuDanhMuc đã có trong lớp BLL

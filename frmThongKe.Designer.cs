@@ -28,7 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.pnlHeader = new Guna.UI2.WinForms.Guna2Panel();
+            this.cboThongKe_Nam = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.cboThongKe_Thang = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.guna2HtmlLabel14 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2HtmlLabel13 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Panel8 = new Guna.UI2.WinForms.Guna2Panel();
@@ -36,27 +46,49 @@
             this.guna2HtmlLabel15 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
             this.pbAnUong = new Guna.UI2.WinForms.Guna2ProgressBar();
+            this.pbGiaiTri = new Guna.UI2.WinForms.Guna2ProgressBar();
+            this.pbMuaSam = new Guna.UI2.WinForms.Guna2ProgressBar();
+            this.pbDiLai = new Guna.UI2.WinForms.Guna2ProgressBar();
+            this.pbHoaDon = new Guna.UI2.WinForms.Guna2ProgressBar();
+            this.lblTop5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblTop4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblTop3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblTop2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblTop1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Panel6 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2HtmlLabel12 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel11 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel10 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblSoDuRong = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblTongChiTieu = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.awfw = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.esfef = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblTongThuNhap = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.myChartThuChi = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.myChartBienDong = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.pnlHeader.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.guna2Panel5.SuspendLayout();
             this.guna2Panel8.SuspendLayout();
+            this.guna2Panel7.SuspendLayout();
+            this.guna2Panel4.SuspendLayout();
+            this.guna2Panel3.SuspendLayout();
+            this.guna2Panel6.SuspendLayout();
+            this.guna2Panel1.SuspendLayout();
+            this.guna2Panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.myChartThuChi)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.myChartBienDong)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlHeader
             // 
-            this.pnlHeader.Controls.Add(this.cboTaiKhoan);
-            this.pnlHeader.Controls.Add(this.cboNam);
+            this.pnlHeader.Controls.Add(this.cboThongKe_Nam);
+            this.pnlHeader.Controls.Add(this.cboThongKe_Thang);
             this.pnlHeader.Controls.Add(this.guna2HtmlLabel14);
             this.pnlHeader.Controls.Add(this.guna2HtmlLabel13);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
@@ -65,6 +97,59 @@
             this.pnlHeader.Name = "pnlHeader";
             this.pnlHeader.Size = new System.Drawing.Size(1036, 80);
             this.pnlHeader.TabIndex = 0;
+            // 
+            // cboThongKe_Nam
+            // 
+            this.cboThongKe_Nam.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboThongKe_Nam.BackColor = System.Drawing.Color.Transparent;
+            this.cboThongKe_Nam.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cboThongKe_Nam.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboThongKe_Nam.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cboThongKe_Nam.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cboThongKe_Nam.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cboThongKe_Nam.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cboThongKe_Nam.ItemHeight = 30;
+            this.cboThongKe_Nam.Location = new System.Drawing.Point(844, 37);
+            this.cboThongKe_Nam.Name = "cboThongKe_Nam";
+            this.cboThongKe_Nam.Size = new System.Drawing.Size(140, 36);
+            this.cboThongKe_Nam.TabIndex = 6;
+            // 
+            // cboThongKe_Thang
+            // 
+            this.cboThongKe_Thang.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboThongKe_Thang.BackColor = System.Drawing.Color.Transparent;
+            this.cboThongKe_Thang.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cboThongKe_Thang.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboThongKe_Thang.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cboThongKe_Thang.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cboThongKe_Thang.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cboThongKe_Thang.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cboThongKe_Thang.ItemHeight = 30;
+            this.cboThongKe_Thang.Location = new System.Drawing.Point(664, 37);
+            this.cboThongKe_Thang.Name = "cboThongKe_Thang";
+            this.cboThongKe_Thang.Size = new System.Drawing.Size(140, 36);
+            this.cboThongKe_Thang.TabIndex = 5;
+            // 
+            // guna2HtmlLabel14
+            // 
+            this.guna2HtmlLabel14.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel14.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel14.ForeColor = System.Drawing.Color.Black;
+            this.guna2HtmlLabel14.Location = new System.Drawing.Point(15, 48);
+            this.guna2HtmlLabel14.Name = "guna2HtmlLabel14";
+            this.guna2HtmlLabel14.Size = new System.Drawing.Size(157, 25);
+            this.guna2HtmlLabel14.TabIndex = 4;
+            this.guna2HtmlLabel14.Text = "Tổng quan tài chính";
+            // 
+            // guna2HtmlLabel13
+            // 
+            this.guna2HtmlLabel13.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel13.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel13.Location = new System.Drawing.Point(12, 3);
+            this.guna2HtmlLabel13.Name = "guna2HtmlLabel13";
+            this.guna2HtmlLabel13.Size = new System.Drawing.Size(122, 39);
+            this.guna2HtmlLabel13.TabIndex = 3;
+            this.guna2HtmlLabel13.Text = "Thống kê";
             // 
             // tableLayoutPanel1
             // 
@@ -98,10 +183,11 @@
             this.guna2Panel5.ShadowDecoration.BorderRadius = 15;
             this.guna2Panel5.ShadowDecoration.Enabled = true;
             this.guna2Panel5.Size = new System.Drawing.Size(664, 282);
+            this.guna2Panel5.TabIndex = 4;
             // 
             // guna2Panel8
             // 
-            this.guna2Panel8.Controls.Add(this.elementHost2);
+            this.guna2Panel8.Controls.Add(this.myChartBienDong);
             this.guna2Panel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Panel8.Location = new System.Drawing.Point(0, 40);
             this.guna2Panel8.Name = "guna2Panel8";
@@ -117,6 +203,16 @@
             this.guna2Panel7.Size = new System.Drawing.Size(664, 40);
             this.guna2Panel7.TabIndex = 3;
             // 
+            // guna2HtmlLabel15
+            // 
+            this.guna2HtmlLabel15.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel15.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel15.Location = new System.Drawing.Point(18, 3);
+            this.guna2HtmlLabel15.Name = "guna2HtmlLabel15";
+            this.guna2HtmlLabel15.Size = new System.Drawing.Size(158, 30);
+            this.guna2HtmlLabel15.TabIndex = 2;
+            this.guna2HtmlLabel15.Text = "Biến động số dư";
+            // 
             // guna2Panel4
             // 
             this.guna2Panel4.BackColor = System.Drawing.Color.Transparent;
@@ -126,11 +222,11 @@
             this.guna2Panel4.Controls.Add(this.pbMuaSam);
             this.guna2Panel4.Controls.Add(this.pbDiLai);
             this.guna2Panel4.Controls.Add(this.pbHoaDon);
-            this.guna2Panel4.Controls.Add(this.guna2HtmlLabel9);
-            this.guna2Panel4.Controls.Add(this.guna2HtmlLabel8);
-            this.guna2Panel4.Controls.Add(this.guna2HtmlLabel7);
-            this.guna2Panel4.Controls.Add(this.guna2HtmlLabel6);
-            this.guna2Panel4.Controls.Add(this.guna2HtmlLabel5);
+            this.guna2Panel4.Controls.Add(this.lblTop5);
+            this.guna2Panel4.Controls.Add(this.lblTop4);
+            this.guna2Panel4.Controls.Add(this.lblTop3);
+            this.guna2Panel4.Controls.Add(this.lblTop2);
+            this.guna2Panel4.Controls.Add(this.lblTop1);
             this.guna2Panel4.Controls.Add(this.guna2HtmlLabel4);
             this.guna2Panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Panel4.FillColor = System.Drawing.Color.White;
@@ -164,6 +260,7 @@
             this.pbGiaiTri.TabIndex = 11;
             this.pbGiaiTri.Text = "guna2ProgressBar5";
             this.pbGiaiTri.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.pbGiaiTri.Value = 70;
             // 
             // pbMuaSam
             // 
@@ -186,6 +283,7 @@
             this.pbDiLai.TabIndex = 9;
             this.pbDiLai.Text = "guna2ProgressBar3";
             this.pbDiLai.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.pbDiLai.Value = 70;
             // 
             // pbHoaDon
             // 
@@ -197,54 +295,62 @@
             this.pbHoaDon.TabIndex = 7;
             this.pbHoaDon.Text = "guna2ProgressBar1";
             this.pbHoaDon.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.pbHoaDon.Value = 70;
             // 
-            // guna2HtmlLabel9
+            // lblTop5
             // 
-            this.guna2HtmlLabel9.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel9.ForeColor = System.Drawing.Color.Black;
-            this.guna2HtmlLabel9.Location = new System.Drawing.Point(12, 219);
-            this.guna2HtmlLabel9.Name = "guna2HtmlLabel9";
-            this.guna2HtmlLabel9.Size = new System.Drawing.Size(62, 22);
-            this.guna2HtmlLabel9.TabIndex = 5;
-            this.guna2HtmlLabel9.Text = "5. Giải trí";
+            this.lblTop5.BackColor = System.Drawing.Color.Transparent;
+            this.lblTop5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTop5.ForeColor = System.Drawing.Color.Black;
+            this.lblTop5.Location = new System.Drawing.Point(12, 219);
+            this.lblTop5.Name = "lblTop5";
+            this.lblTop5.Size = new System.Drawing.Size(62, 22);
+            this.lblTop5.TabIndex = 5;
+            this.lblTop5.Text = "5. Giải trí";
             // 
-            // guna2HtmlLabel8
+            // lblTop4
             // 
-            this.guna2HtmlLabel8.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel8.ForeColor = System.Drawing.Color.Black;
-            this.guna2HtmlLabel8.Location = new System.Drawing.Point(12, 177);
-            this.guna2HtmlLabel8.Name = "guna2HtmlLabel8";
-            this.guna2HtmlLabel8.Size = new System.Drawing.Size(78, 22);
-            this.guna2HtmlLabel8.TabIndex = 4;
-            this.guna2HtmlLabel8.Text = "4. Mua sắm";
+            this.lblTop4.BackColor = System.Drawing.Color.Transparent;
+            this.lblTop4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTop4.ForeColor = System.Drawing.Color.Black;
+            this.lblTop4.Location = new System.Drawing.Point(12, 177);
+            this.lblTop4.Name = "lblTop4";
+            this.lblTop4.Size = new System.Drawing.Size(78, 22);
+            this.lblTop4.TabIndex = 4;
+            this.lblTop4.Text = "4. Mua sắm";
             // 
-            // guna2HtmlLabel7
+            // lblTop3
             // 
-            this.guna2HtmlLabel7.BackColor = System.Drawing.Color.Transparent;
+            this.lblTop3.BackColor = System.Drawing.Color.Transparent;
+            this.lblTop3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTop3.ForeColor = System.Drawing.Color.Black;
+            this.lblTop3.Location = new System.Drawing.Point(12, 137);
+            this.lblTop3.Name = "lblTop3";
+            this.lblTop3.Size = new System.Drawing.Size(53, 22);
+            this.lblTop3.TabIndex = 3;
+            this.lblTop3.Text = "3. Đi lại";
             // 
-            // guna2HtmlLabel6
+            // lblTop2
             // 
-            this.guna2HtmlLabel6.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel6.ForeColor = System.Drawing.Color.Black;
-            this.guna2HtmlLabel6.Location = new System.Drawing.Point(12, 94);
-            this.guna2HtmlLabel6.Name = "guna2HtmlLabel6";
-            this.guna2HtmlLabel6.Size = new System.Drawing.Size(74, 22);
-            this.guna2HtmlLabel6.TabIndex = 2;
-            this.guna2HtmlLabel6.Text = "2. Ăn uống";
+            this.lblTop2.BackColor = System.Drawing.Color.Transparent;
+            this.lblTop2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTop2.ForeColor = System.Drawing.Color.Black;
+            this.lblTop2.Location = new System.Drawing.Point(12, 94);
+            this.lblTop2.Name = "lblTop2";
+            this.lblTop2.Size = new System.Drawing.Size(74, 22);
+            this.lblTop2.TabIndex = 2;
+            this.lblTop2.Text = "2. Ăn uống";
             // 
-            // guna2HtmlLabel5
+            // lblTop1
             // 
-            this.guna2HtmlLabel5.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel5.ForeColor = System.Drawing.Color.Black;
-            this.guna2HtmlLabel5.Location = new System.Drawing.Point(12, 55);
-            this.guna2HtmlLabel5.Name = "guna2HtmlLabel5";
-            this.guna2HtmlLabel5.Size = new System.Drawing.Size(76, 22);
-            this.guna2HtmlLabel5.TabIndex = 1;
-            this.guna2HtmlLabel5.Text = "1. Hóa đơn";
+            this.lblTop1.BackColor = System.Drawing.Color.Transparent;
+            this.lblTop1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTop1.ForeColor = System.Drawing.Color.Black;
+            this.lblTop1.Location = new System.Drawing.Point(12, 55);
+            this.lblTop1.Name = "lblTop1";
+            this.lblTop1.Size = new System.Drawing.Size(76, 22);
+            this.lblTop1.TabIndex = 1;
+            this.lblTop1.Text = "1. Hóa đơn";
             // 
             // guna2HtmlLabel4
             // 
@@ -260,13 +366,17 @@
             // 
             this.guna2Panel3.BackColor = System.Drawing.Color.Transparent;
             this.guna2Panel3.BorderRadius = 15;
-            this.guna2Panel3.Controls.Add(this.elementHost1);
+            this.guna2Panel3.Controls.Add(this.myChartThuChi);
             this.guna2Panel3.Controls.Add(this.guna2Panel6);
             this.guna2Panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Panel3.FillColor = System.Drawing.Color.White;
             this.guna2Panel3.Location = new System.Drawing.Point(357, 15);
             this.guna2Panel3.Margin = new System.Windows.Forms.Padding(15);
             this.guna2Panel3.Name = "guna2Panel3";
+            this.guna2Panel3.ShadowDecoration.BorderRadius = 15;
+            this.guna2Panel3.ShadowDecoration.Enabled = true;
+            this.guna2Panel3.Size = new System.Drawing.Size(664, 282);
+            this.guna2Panel3.TabIndex = 2;
             // 
             // guna2Panel6
             // 
@@ -288,6 +398,7 @@
             this.guna2HtmlLabel12.Name = "guna2HtmlLabel12";
             this.guna2HtmlLabel12.Size = new System.Drawing.Size(53, 22);
             this.guna2HtmlLabel12.TabIndex = 4;
+            this.guna2HtmlLabel12.Text = "Chi tiêu";
             // 
             // guna2HtmlLabel11
             // 
@@ -318,43 +429,76 @@
             this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Panel1.FillColor = System.Drawing.Color.White;
             this.guna2Panel1.Location = new System.Drawing.Point(15, 15);
+            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(15);
+            this.guna2Panel1.Name = "guna2Panel1";
+            this.guna2Panel1.ShadowDecoration.BorderRadius = 15;
+            this.guna2Panel1.ShadowDecoration.Enabled = true;
+            this.guna2Panel1.Size = new System.Drawing.Size(312, 282);
+            this.guna2Panel1.TabIndex = 0;
             // 
             // guna2Panel2
             // 
             this.guna2Panel2.BackColor = System.Drawing.Color.Transparent;
             this.guna2Panel2.BorderRadius = 15;
-            this.guna2Panel2.Controls.Add(this.guna2HtmlLabel3);
-            this.guna2Panel2.Controls.Add(this.guna2HtmlLabel2);
             this.guna2Panel2.Controls.Add(this.lblSoDuRong);
             this.guna2Panel2.Controls.Add(this.lblTongChiTieu);
+            this.guna2Panel2.Controls.Add(this.awfw);
+            this.guna2Panel2.Controls.Add(this.esfef);
+            this.guna2Panel2.Controls.Add(this.lblTongThuNhap);
+            this.guna2Panel2.Controls.Add(this.guna2HtmlLabel1);
+            this.guna2Panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2Panel2.FillColor = System.Drawing.Color.White;
+            this.guna2Panel2.Location = new System.Drawing.Point(0, 0);
+            this.guna2Panel2.Margin = new System.Windows.Forms.Padding(15);
+            this.guna2Panel2.Name = "guna2Panel2";
+            this.guna2Panel2.ShadowDecoration.BorderRadius = 15;
+            this.guna2Panel2.ShadowDecoration.Enabled = true;
+            this.guna2Panel2.Size = new System.Drawing.Size(312, 282);
+            this.guna2Panel2.TabIndex = 1;
             // 
-            // guna2HtmlLabel3
-            // 
-            this.guna2HtmlLabel3.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel3.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
-            this.guna2HtmlLabel3.Location = new System.Drawing.Point(50, 219);
-            this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            this.guna2HtmlLabel3.Size = new System.Drawing.Size(233, 39);
-            this.guna2HtmlLabel3.TabIndex = 5;
-            // 
-            this.guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent;
+            // lblSoDuRong
             // 
             this.lblSoDuRong.BackColor = System.Drawing.Color.Transparent;
-            this.lblSoDuRong.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSoDuRong.ForeColor = System.Drawing.Color.Gray;
-            this.lblSoDuRong.Location = new System.Drawing.Point(14, 188);
+            this.lblSoDuRong.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSoDuRong.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
+            this.lblSoDuRong.Location = new System.Drawing.Point(50, 219);
             this.lblSoDuRong.Name = "lblSoDuRong";
-            this.lblSoDuRong.Size = new System.Drawing.Size(88, 25);
+            this.lblSoDuRong.Size = new System.Drawing.Size(233, 39);
+            this.lblSoDuRong.TabIndex = 5;
+            this.lblSoDuRong.Text = "guna2HtmlLabel2";
             // 
             // lblTongChiTieu
             // 
             this.lblTongChiTieu.BackColor = System.Drawing.Color.Transparent;
-            this.lblTongChiTieu.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTongChiTieu.ForeColor = System.Drawing.Color.Gray;
-            this.lblTongChiTieu.Location = new System.Drawing.Point(14, 103);
+            this.lblTongChiTieu.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTongChiTieu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
+            this.lblTongChiTieu.Location = new System.Drawing.Point(50, 134);
             this.lblTongChiTieu.Name = "lblTongChiTieu";
-            this.lblTongChiTieu.Size = new System.Drawing.Size(103, 25);
+            this.lblTongChiTieu.Size = new System.Drawing.Size(106, 39);
+            this.lblTongChiTieu.TabIndex = 4;
+            this.lblTongChiTieu.Text = "dwadad";
+            // 
+            // awfw
+            // 
+            this.awfw.BackColor = System.Drawing.Color.Transparent;
+            this.awfw.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.awfw.ForeColor = System.Drawing.Color.Gray;
+            this.awfw.Location = new System.Drawing.Point(14, 188);
+            this.awfw.Name = "awfw";
+            this.awfw.Size = new System.Drawing.Size(88, 25);
+            this.awfw.TabIndex = 3;
+            this.awfw.Text = "Số dư ròng";
+            // 
+            // esfef
+            // 
+            this.esfef.BackColor = System.Drawing.Color.Transparent;
+            this.esfef.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.esfef.ForeColor = System.Drawing.Color.Gray;
+            this.esfef.Location = new System.Drawing.Point(14, 103);
+            this.esfef.Name = "esfef";
+            this.esfef.Size = new System.Drawing.Size(103, 25);
+            this.esfef.TabIndex = 2;
+            this.esfef.Text = "Tổng chi tiêu";
             // 
             // lblTongThuNhap
             // 
@@ -365,6 +509,7 @@
             this.lblTongThuNhap.Name = "lblTongThuNhap";
             this.lblTongThuNhap.Size = new System.Drawing.Size(233, 39);
             this.lblTongThuNhap.TabIndex = 1;
+            this.lblTongThuNhap.Text = "guna2HtmlLabel2";
             // 
             // guna2HtmlLabel1
             // 
@@ -377,25 +522,39 @@
             this.guna2HtmlLabel1.TabIndex = 0;
             this.guna2HtmlLabel1.Text = "Tổng thu nhập";
             // 
-            // elementHost1
+            // myChartThuChi
             // 
-            this.elementHost1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.elementHost1.Location = new System.Drawing.Point(0, 40);
-            this.elementHost1.Name = "elementHost1";
-            this.elementHost1.Size = new System.Drawing.Size(664, 242);
-            this.elementHost1.TabIndex = 3;
-            this.elementHost1.Text = "elementHost1";
-            this.elementHost1.Child = this.cartesianChart3;
+            chartArea2.Name = "ChartArea1";
+            this.myChartThuChi.ChartAreas.Add(chartArea2);
+            this.myChartThuChi.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend2.Name = "Legend1";
+            this.myChartThuChi.Legends.Add(legend2);
+            this.myChartThuChi.Location = new System.Drawing.Point(0, 40);
+            this.myChartThuChi.Name = "myChartThuChi";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.myChartThuChi.Series.Add(series2);
+            this.myChartThuChi.Size = new System.Drawing.Size(664, 242);
+            this.myChartThuChi.TabIndex = 3;
+            this.myChartThuChi.Text = "chart1";
             // 
-            // elementHost2
+            // myChartBienDong
             // 
-            this.elementHost2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.elementHost2.Location = new System.Drawing.Point(0, 0);
-            this.elementHost2.Name = "elementHost2";
-            this.elementHost2.Size = new System.Drawing.Size(664, 242);
-            this.elementHost2.TabIndex = 0;
-            this.elementHost2.Text = "elementHost2";
-            this.elementHost2.Child = this.cartesianChart4;
+            chartArea1.Name = "ChartArea1";
+            this.myChartBienDong.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.myChartBienDong.Legends.Add(legend1);
+            this.myChartBienDong.Location = new System.Drawing.Point(152, 36);
+            this.myChartBienDong.Name = "myChartBienDong";
+            this.myChartBienDong.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Light;
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.myChartBienDong.Series.Add(series1);
+            this.myChartBienDong.Size = new System.Drawing.Size(300, 300);
+            this.myChartBienDong.TabIndex = 0;
+            this.myChartBienDong.Text = "chart1";
             // 
             // frmThongKe
             // 
@@ -423,6 +582,8 @@
             this.guna2Panel1.ResumeLayout(false);
             this.guna2Panel2.ResumeLayout(false);
             this.guna2Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.myChartThuChi)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.myChartBienDong)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -438,17 +599,17 @@
         private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblTongThuNhap;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
+        private Guna.UI2.WinForms.Guna2HtmlLabel awfw;
+        private Guna.UI2.WinForms.Guna2HtmlLabel esfef;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel4;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblSoDuRong;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblTongChiTieu;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel4;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel3;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
         private Guna.UI2.WinForms.Guna2ProgressBar pbHoaDon;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel9;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel8;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel7;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel6;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel5;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblTop5;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblTop4;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblTop3;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblTop2;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblTop1;
         private Guna.UI2.WinForms.Guna2ProgressBar pbAnUong;
         private Guna.UI2.WinForms.Guna2ProgressBar pbGiaiTri;
         private Guna.UI2.WinForms.Guna2ProgressBar pbMuaSam;
@@ -461,10 +622,12 @@
         private Guna.UI2.WinForms.Guna2Panel guna2Panel7;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel15;
         private LiveCharts.WinForms.CartesianChart cartesianChart1;
-        private Guna.UI2.WinForms.Guna2ComboBox cboTaiKhoan;
-        private Guna.UI2.WinForms.Guna2ComboBox cboNam;
+        private Guna.UI2.WinForms.Guna2ComboBox cboThongKe_Nam;
+        private Guna.UI2.WinForms.Guna2ComboBox cboThongKe_Thang;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel14;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel13;
         private LiveCharts.WinForms.CartesianChart cartesianChart2;
+        private System.Windows.Forms.DataVisualization.Charting.Chart myChartBienDong;
+        private System.Windows.Forms.DataVisualization.Charting.Chart myChartThuChi;
     }
 }

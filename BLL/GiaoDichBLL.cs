@@ -1,69 +1,77 @@
-using QuanLyChiTieu.DAL;
+﻿using QuanLyChiTieu.DAL;
+using QuanLyChiTieu.DTO;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Text.RegularExpressions;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Configuration;
 
 namespace QuanLyChiTieu.BLL
 {
     public class GiaoDichBLL
     {
-        // ✅ FIX: Dùng Singleton thay vì new GiaoDichDAL()
-        private GiaoDichDAL dal = GiaoDichDAL.Instance;
+        private readonly GiaoDichDAL _gdDAL = new GiaoDichDAL();
+        private readonly TaiKhoanDAL _tkDAL = new TaiKhoanDAL();
 
-        // Lấy lịch sử giao dịch
-        public DataTable LayLichSuGiaoDich()
+        public List<GiaoDichDTO> GetByLoaiVaNgay(int maNguoiDung, string loai, DateTime ngay)
+            => _gdDAL.GetByLoaiVaNgay(maNguoiDung, loai, ngay);
+        public List<GiaoDichDTO> GetAll(int maNguoiDung) => _gdDAL.GetAll(maNguoiDung);
+        public List<GiaoDichDTO> Search(int maNguoiDung, string kw) => _gdDAL.Search(maNguoiDung, kw);
+        public List<GiaoDichDTO> GetGanDay(int maNguoiDung) => _gdDAL.GetGanDay(maNguoiDung);
+        public decimal GetTong(int maNguoiDung, string loai, int thang, int nam)
+            => _gdDAL.GetTong(maNguoiDung, loai, thang, nam);
+        public DataTable GetThongKeTheoThang(int maNguoiDung, int nam)
+            => _gdDAL.GetThongKeTheoThang(maNguoiDung, nam);
+        public DataTable GetTop5DanhMucChi(int maNguoiDung, int thang, int nam)
+            => _gdDAL.GetTop5DanhMucChi(maNguoiDung, thang, nam);
+        public DataTable BaoCao(int maNguoiDung, DateTime tuNgay, DateTime denNgay, string loai = null)
+            => _gdDAL.BaoCao(maNguoiDung, tuNgay, denNgay, loai);
+
+        public bool Them(GiaoDichDTO gd)
         {
-            return dal.LayDanhSachGiaoDich();
-        }
-
-        public long LayTongChiTieu()
-        {
-            return dal.LayTongChiTieuThangNay();
-        }
-
-        // Lưu giao dịch mới
-        public bool LuuGiaoDich(long soTien, string ghiChu)
-        {
-            return dal.ThemGiaoDich(soTien, ghiChu);
-        }
-
-        // Lọc / tìm kiếm giao dịch
-        public DataTable LocDuLieu(string search, string loai)
-        {
-            return dal.TimKiemGiaoDich(search, loai);
-        }
-
-        // ✅ FIX: Xử lý "tr" trước "k" để tránh phá chuỗi
-        // Ví dụ: "30tr an toi" → soTien=30000000, ghiChu="an toi"
-        //        "150k cafe"   → soTien=150000,   ghiChu="cafe"
-        public (long soTien, string ghiChu) PhanTichChuoi(string input)
-        {
-            if (string.IsNullOrWhiteSpace(input))
-                return (0, "");
-
-            long soTien = 0;
-            string ghiChu = input.Trim();
-
-            try
+            int maGd = _gdDAL.Them(gd);
+            if (maGd == 0) return false;
+            if (gd.LoaiGiaoDich == "Thu")
+                _tkDAL.CapNhatSoDu(gd.MaTaiKhoan, gd.SoTien);
+            else if (gd.LoaiGiaoDich == "Chi")
+                _tkDAL.CapNhatSoDu(gd.MaTaiKhoan, -gd.SoTien);
+            else if (gd.LoaiGiaoDich == "ChuyenTien" && gd.MaTaiKhoanNhan.HasValue)
             {
-                string[] parts = input.Trim().Split(' ');
-                foreach (string part in parts)
-                {
-                    // ✅ FIX: Replace "tr" trước để không bị "k" phá chuỗi "tr" → "t000"
-                    string temp = part.ToLower();
-                    temp = temp.Replace("tr", "000000").Replace("k", "000");
-
-                    if (long.TryParse(temp, out long parsed))
-                    {
-                        soTien = parsed;
-                        ghiChu = input.Replace(part, "").Trim();
-                        break;
-                    }
-                }
+                _tkDAL.CapNhatSoDu(gd.MaTaiKhoan, -gd.SoTien);
+                _tkDAL.CapNhatSoDu(gd.MaTaiKhoanNhan.Value, gd.SoTien);
             }
-            catch
+            return true;
+        }
+
+        public bool Xoa(GiaoDichDTO gd)
+        {
+            if (_gdDAL.Xoa(gd.MaGiaoDich) == 0) return false;
+            if (gd.LoaiGiaoDich == "Thu")
+                _tkDAL.CapNhatSoDu(gd.MaTaiKhoan, -gd.SoTien);
+            else if (gd.LoaiGiaoDich == "Chi")
+                _tkDAL.CapNhatSoDu(gd.MaTaiKhoan, gd.SoTien);
+            else if (gd.LoaiGiaoDich == "ChuyenTien" && gd.MaTaiKhoanNhan.HasValue)
             {
-                // Bỏ qua lỗi định dạng không mong muốn
+                _tkDAL.CapNhatSoDu(gd.MaTaiKhoan, gd.SoTien);
+                _tkDAL.CapNhatSoDu(gd.MaTaiKhoanNhan.Value, -gd.SoTien);
             }
+            return true;
+        }
 
-            return (soTien, ghiChu);
+        // ─── HÀM "PHIÊN DỊCH" CHO FORM GIAO DỊCH ───
+        public List<GiaoDichDTO> LayDanhSachGiaoDich()
+        {
+            // Tạm thời gán mã người dùng = 1 
+            int maNguoiDung = 1;
+            return GetAll(maNguoiDung);
+        }
+        public bool Sua(GiaoDichDTO gd)
+        {
+            // Gọi hàm Sua() từ DAL vừa tạo ở trên
+            return _gdDAL.Sua(gd) > 0;
         }
     }
 }

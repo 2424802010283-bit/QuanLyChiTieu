@@ -111,11 +111,21 @@
   <ItemGroup>
     <Compile Include="BLL\DanhMucBLL.cs" />
     <Compile Include="BLL\GiaoDichBLL.cs" />
+    <Compile Include="BLL\MucTieuBLL.cs" />
+    <Compile Include="BLL\NganSachBLL.cs" />
     <Compile Include="BLL\NguoiDungBLL.cs" />
+    <Compile Include="BLL\Session.cs" />
+    <Compile Include="BLL\TaiKhoanBLL.cs" />
     <Compile Include="DAL\DanhMucDAL.cs" />
     <Compile Include="DAL\DataProvider.cs" />
     <Compile Include="DAL\GiaoDichDAL.cs" />
+    <Compile Include="DAL\MucTieuDAL.cs" />
+    <Compile Include="DAL\NganSachDAL.cs" />
     <Compile Include="DAL\NguoiDungDAL.cs" />
+    <Compile Include="DAL\TaiKhoanDAL.cs" />
+    <Compile Include="DTO\MucTieuDTO.cs" />
+    <Compile Include="DTO\NganSachDTO.cs" />
+    <Compile Include="DTO\TaiKhoanDTO.cs" />
     <Compile Include="frmBaoCao.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,6 +209,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmChiTieu.resx">
+      <DependentUpon>frmChiTieu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmGiaoDich.resx">
       <DependentUpon>frmGiaoDich.cs</DependentUpon>
     </EmbeddedResource>
@@ -213,6 +226,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCaiDat.resx">
       <DependentUpon>frmCaiDat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMucTieu.resx">
+      <DependentUpon>frmMucTieu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNganSach.resx">
+      <DependentUpon>frmNganSach.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTaiKhoan.resx">
+      <DependentUpon>frmTaiKhoan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmThongKe.resx">
       <DependentUpon>frmThongKe.cs</DependentUpon>
