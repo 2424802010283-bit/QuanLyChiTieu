@@ -18,19 +18,19 @@ namespace QuanLyChiTieu.DAL
     {
         public List<GiaoDichDTO> GetByLoaiVaNgay(int maNguoiDung, string loai, DateTime ngay)
         {
-            string sql = @"
-                SELECT g.*, d.TenDanhMuc, t.TenTaiKhoan
-                FROM GiaoDich g
-                LEFT JOIN DanhMuc  d ON g.MaDanhMuc  = d.MaDanhMuc
-                LEFT JOIN TaiKhoan t ON g.MaTaiKhoan = t.MaTaiKhoan
-                WHERE g.MaNguoiDung=@Ma AND g.LoaiGiaoDich=@Loai
-                  AND CAST(g.NgayGiaoDich AS DATE)=@Ngay
-                ORDER BY g.NgayGiaoDich DESC";
-            var pms = new SqlParameter[] {
-                new SqlParameter("@Ma",   maNguoiDung),
-                new SqlParameter("@Loai", loai),
-                new SqlParameter("@Ngay", ngay.Date)
-            };
+            string sql = @"SELECT g.*, d.TenDanhMuc, t.TenTaiKhoan 
+                   FROM GiaoDich g
+                   LEFT JOIN DanhMuc d ON g.MaDanhMuc = d.MaDanhMuc
+                   LEFT JOIN TaiKhoan t ON g.MaTaiKhoan = t.MaTaiKhoan
+                   WHERE g.MaNguoiDung = @Ma 
+                     AND g.LoaiGiaoDich = @Loai -- Chỗ này sẽ nhận 'Thu nhập' hoặc 'Chi tiêu'
+                     AND CAST(g.NgayGiaoDich AS DATE) = @Ngay";
+
+            SqlParameter[] pms = {
+        new SqlParameter("@Ma", maNguoiDung),
+        new SqlParameter("@Loai", loai), // Giá trị truyền vào từ BLL
+        new SqlParameter("@Ngay", ngay.Date)
+    };
             return MapList(DataProvider.ExecuteQuery(sql, pms));
         }
 

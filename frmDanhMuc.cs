@@ -40,6 +40,7 @@ namespace QuanLyChiTieu
         // --- NÚT LƯU (Trong panel) ---
         private void btnLuu_Click(object sender, EventArgs e)
         {// 1. Kiểm tra Tên danh mục
+
             if (string.IsNullOrWhiteSpace(txtTenDanhMuc.Text))
             {
                 MessageBox.Show("Vui lòng nhập tên danh mục!");

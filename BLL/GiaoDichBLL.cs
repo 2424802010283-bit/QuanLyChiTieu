@@ -17,7 +17,9 @@ namespace QuanLyChiTieu.BLL
         private readonly TaiKhoanDAL _tkDAL = new TaiKhoanDAL();
 
         public List<GiaoDichDTO> GetByLoaiVaNgay(int maNguoiDung, string loai, DateTime ngay)
-            => _gdDAL.GetByLoaiVaNgay(maNguoiDung, loai, ngay);
+        {
+            return _gdDAL.GetByLoaiVaNgay(maNguoiDung, loai, ngay);
+        }
         public List<GiaoDichDTO> GetAll(int maNguoiDung) => _gdDAL.GetAll(maNguoiDung);
         public List<GiaoDichDTO> Search(int maNguoiDung, string kw) => _gdDAL.Search(maNguoiDung, kw);
         public List<GiaoDichDTO> GetGanDay(int maNguoiDung) => _gdDAL.GetGanDay(maNguoiDung);

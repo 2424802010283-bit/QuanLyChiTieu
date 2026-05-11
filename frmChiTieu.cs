@@ -29,7 +29,9 @@ namespace QuanLyChiTieu
 
         private void LoadDanhMuc()
         {
-            var list = _dmBLL.GetByLoai(Session.MaNguoiDung, "Chi");
+            // Phải là "Chi tiêu" để khớp với Database
+            var list = _dmBLL.GetByLoai(Session.MaNguoiDung, "Chi tiêu");
+
             cboChiTieu_DanhMuc.DataSource = list;
             cboChiTieu_DanhMuc.DisplayMember = "TenDanhMuc";
             cboChiTieu_DanhMuc.ValueMember = "MaDanhMuc";
@@ -45,7 +47,7 @@ namespace QuanLyChiTieu
 
         private void LoadDanhSach()
         {
-            _danhSach = _gdBLL.GetByLoaiVaNgay(Session.MaNguoiDung, "Chi", dateTimePicker_NgayChi.Value.Date);
+            _danhSach = _gdBLL.GetByLoaiVaNgay(Session.MaNguoiDung, "Chi tiêu", dateTimePicker_NgayChi.Value.Date);
             dgvChiTieu.Rows.Clear();
             decimal tong = 0;
             foreach (var gd in _danhSach)
@@ -72,7 +74,7 @@ namespace QuanLyChiTieu
                 MaNguoiDung = Session.MaNguoiDung,
                 MaTaiKhoan = (int)cboChiTieu_TaiKhoan.SelectedValue,
                 MaDanhMuc = (int)cboChiTieu_DanhMuc.SelectedValue,
-                LoaiGiaoDich = "Chi",
+                LoaiGiaoDich = "Chi Tiêu",
                 NgayGiaoDich = dateTimePicker_NgayChi.Value,
                 SoTien = soTien,
                 MoTa = txtChiTieu_GhiChu.Text.Trim()

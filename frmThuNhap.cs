@@ -26,11 +26,12 @@ namespace QuanLyChiTieu
         { LoadDanhMuc(); LoadTaiKhoan(); LoadDanhSach(); }
 
         private void LoadDanhMuc()
-        {
-            var list = _dmBLL.GetByLoai(Session.MaNguoiDung, "Thu");
+        {// Đảm bảo chữ "Thu nhập" viết đúng chính tả, có dấu, y hệt như lúc bạn thêm ở frmDanhMuc
+            var list = _dmBLL.GetByLoai(Session.MaNguoiDung, "Thu nhập");
+
             cboThuNhap_DanhMuc.DataSource = list;
-            cboThuNhap_DanhMuc.DisplayMember = "TenDanhMuc";
-            cboThuNhap_DanhMuc.ValueMember = "MaDanhMuc";
+            cboThuNhap_DanhMuc.DisplayMember = "TenDanhMuc"; // Tên cột hiển thị
+            cboThuNhap_DanhMuc.ValueMember = "MaDanhMuc";   // Giá trị ID để lưu
         }
 
         private void LoadTaiKhoan()
@@ -43,7 +44,8 @@ namespace QuanLyChiTieu
 
         private void LoadDanhSach()
         {
-            _danhSach = _gdBLL.GetByLoaiVaNgay(Session.MaNguoiDung, "Thu", dateTimePicker_NgayNhan.Value.Date);
+            // Sửa "Thu" thành "Thu nhập"
+            _danhSach = _gdBLL.GetByLoaiVaNgay(Session.MaNguoiDung, "Thu nhập", dateTimePicker_NgayNhan.Value.Date);
             dgvThuNhap.Rows.Clear();
             decimal tong = 0;
             foreach (var gd in _danhSach)
@@ -70,12 +72,18 @@ namespace QuanLyChiTieu
                 MaNguoiDung = Session.MaNguoiDung,
                 MaTaiKhoan = (int)cboThuNhap_TaiKhoan.SelectedValue,
                 MaDanhMuc = (int)cboThuNhap_DanhMuc.SelectedValue,
-                LoaiGiaoDich = "Thu",
+                LoaiGiaoDich = "Thu nhập", // Sửa "Thu" thành "Thu nhập"
                 NgayGiaoDich = dateTimePicker_NgayNhan.Value,
                 SoTien = soTien,
                 MoTa = txtThuNhap_GhiChu.Text.Trim()
             };
-            if (_gdBLL.Them(gd)) { MessageBox.Show("Thêm thành công!"); XoaForm(); LoadDanhSach(); }
+
+            if (_gdBLL.Them(gd))
+            {
+                MessageBox.Show("Thêm thành công!");
+                XoaForm();
+                LoadDanhSach();
+            }
         }
 
         private void dgvThuNhap_CellClick(object sender, DataGridViewCellEventArgs e)
