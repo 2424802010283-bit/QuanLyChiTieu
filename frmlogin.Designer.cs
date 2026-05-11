@@ -1,4 +1,5 @@
-﻿namespace QuanLyChiTieu
+﻿using System.Windows.Forms;
+namespace QuanLyChiTieu
 {
     partial class frmlogin
     {
@@ -36,11 +37,13 @@
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.pnlLoginContainer = new Guna.UI2.WinForms.Guna2Panel();
+            this.lnkQuenMK = new System.Windows.Forms.LinkLabel();
+            this.lnkDangKy = new System.Windows.Forms.LinkLabel();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnDangNhap = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2CheckBox1 = new Guna.UI2.WinForms.Guna2CheckBox();
+            this.chkGhiNho = new Guna.UI2.WinForms.Guna2CheckBox();
             this.txtPassword = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txtEmailorsdt = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txtEmail = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.pnlLeft.SuspendLayout();
@@ -88,12 +91,13 @@
             // 
             // pnlLoginContainer
             // 
-            this.pnlLoginContainer.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pnlLoginContainer.Controls.Add(this.lnkQuenMK);
+            this.pnlLoginContainer.Controls.Add(this.lnkDangKy);
+            this.pnlLoginContainer.Controls.Add(this.label1);
             this.pnlLoginContainer.Controls.Add(this.btnDangNhap);
-            this.pnlLoginContainer.Controls.Add(this.guna2HtmlLabel3);
-            this.pnlLoginContainer.Controls.Add(this.guna2CheckBox1);
+            this.pnlLoginContainer.Controls.Add(this.chkGhiNho);
             this.pnlLoginContainer.Controls.Add(this.txtPassword);
-            this.pnlLoginContainer.Controls.Add(this.txtEmailorsdt);
+            this.pnlLoginContainer.Controls.Add(this.txtEmail);
             this.pnlLoginContainer.Controls.Add(this.guna2HtmlLabel2);
             this.pnlLoginContainer.Controls.Add(this.guna2HtmlLabel1);
             this.pnlLoginContainer.ForeColor = System.Drawing.Color.Gray;
@@ -101,6 +105,39 @@
             this.pnlLoginContainer.Name = "pnlLoginContainer";
             this.pnlLoginContainer.Size = new System.Drawing.Size(350, 492);
             this.pnlLoginContainer.TabIndex = 0;
+            this.pnlLoginContainer.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlLoginContainer_Paint);
+            // 
+            // lnkQuenMK
+            // 
+            this.lnkQuenMK.AutoSize = true;
+            this.lnkQuenMK.Location = new System.Drawing.Point(216, 346);
+            this.lnkQuenMK.Name = "lnkQuenMK";
+            this.lnkQuenMK.Size = new System.Drawing.Size(96, 16);
+            this.lnkQuenMK.TabIndex = 9;
+            this.lnkQuenMK.TabStop = true;
+            this.lnkQuenMK.Text = "Quên mật khẩu";
+            this.lnkQuenMK.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkQuenMK_LinkClicked);
+            // 
+            // lnkDangKy
+            // 
+            this.lnkDangKy.AutoSize = true;
+            this.lnkDangKy.Location = new System.Drawing.Point(237, 392);
+            this.lnkDangKy.Name = "lnkDangKy";
+            this.lnkDangKy.Size = new System.Drawing.Size(89, 16);
+            this.lnkDangKy.TabIndex = 8;
+            this.lnkDangKy.TabStop = true;
+            this.lnkDangKy.Text = "Đăng ký ngay";
+            this.lnkDangKy.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkDangKy_LinkClicked);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(98, 392);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(120, 16);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Chưa có tài khoản?";
             // 
             // btnDangNhap
             // 
@@ -112,39 +149,29 @@
             this.btnDangNhap.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.btnDangNhap.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnDangNhap.ForeColor = System.Drawing.Color.White;
-            this.btnDangNhap.Location = new System.Drawing.Point(56, 302);
+            this.btnDangNhap.Location = new System.Drawing.Point(56, 275);
             this.btnDangNhap.Name = "btnDangNhap";
             this.btnDangNhap.Size = new System.Drawing.Size(229, 45);
             this.btnDangNhap.TabIndex = 6;
             this.btnDangNhap.Text = "Đăng nhập";
             this.btnDangNhap.Click += new System.EventHandler(this.btnDangNhap_Click);
             // 
-            // guna2HtmlLabel3
+            // chkGhiNho
             // 
-            this.guna2HtmlLabel3.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel3.ForeColor = System.Drawing.Color.SteelBlue;
-            this.guna2HtmlLabel3.Location = new System.Drawing.Point(226, 408);
-            this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            this.guna2HtmlLabel3.Size = new System.Drawing.Size(99, 18);
-            this.guna2HtmlLabel3.TabIndex = 5;
-            this.guna2HtmlLabel3.Text = "Quên mật khẩu?";
-            // 
-            // guna2CheckBox1
-            // 
-            this.guna2CheckBox1.AutoSize = true;
-            this.guna2CheckBox1.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2CheckBox1.CheckedState.BorderRadius = 0;
-            this.guna2CheckBox1.CheckedState.BorderThickness = 0;
-            this.guna2CheckBox1.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2CheckBox1.Location = new System.Drawing.Point(56, 408);
-            this.guna2CheckBox1.Name = "guna2CheckBox1";
-            this.guna2CheckBox1.Size = new System.Drawing.Size(74, 20);
-            this.guna2CheckBox1.TabIndex = 4;
-            this.guna2CheckBox1.Text = "Ghi nhớ";
-            this.guna2CheckBox1.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.guna2CheckBox1.UncheckedState.BorderRadius = 0;
-            this.guna2CheckBox1.UncheckedState.BorderThickness = 0;
-            this.guna2CheckBox1.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.chkGhiNho.AutoSize = true;
+            this.chkGhiNho.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.chkGhiNho.CheckedState.BorderRadius = 0;
+            this.chkGhiNho.CheckedState.BorderThickness = 0;
+            this.chkGhiNho.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.chkGhiNho.Location = new System.Drawing.Point(36, 346);
+            this.chkGhiNho.Name = "chkGhiNho";
+            this.chkGhiNho.Size = new System.Drawing.Size(74, 20);
+            this.chkGhiNho.TabIndex = 4;
+            this.chkGhiNho.Text = "Ghi nhớ";
+            this.chkGhiNho.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.chkGhiNho.UncheckedState.BorderRadius = 0;
+            this.chkGhiNho.UncheckedState.BorderThickness = 0;
+            this.chkGhiNho.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
             // 
             // txtPassword
             // 
@@ -160,6 +187,7 @@
             this.txtPassword.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtPassword.IconLeft = ((System.Drawing.Image)(resources.GetObject("txtPassword.IconLeft")));
             this.txtPassword.IconRight = ((System.Drawing.Image)(resources.GetObject("txtPassword.IconRight")));
+            this.txtPassword.IconRightCursor = System.Windows.Forms.Cursors.Hand;
             this.txtPassword.Location = new System.Drawing.Point(56, 199);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPassword.Name = "txtPassword";
@@ -168,44 +196,49 @@
             this.txtPassword.Size = new System.Drawing.Size(229, 48);
             this.txtPassword.TabIndex = 3;
             this.txtPassword.UseSystemPasswordChar = true;
+            this.txtPassword.Click += new System.EventHandler(this.txtPassword_Click);
             // 
-            // txtEmailorsdt
+            // txtEmail
             // 
-            this.txtEmailorsdt.BorderRadius = 8;
-            this.txtEmailorsdt.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtEmailorsdt.DefaultText = "";
-            this.txtEmailorsdt.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtEmailorsdt.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtEmailorsdt.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtEmailorsdt.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtEmailorsdt.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtEmailorsdt.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtEmailorsdt.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtEmailorsdt.IconLeft = ((System.Drawing.Image)(resources.GetObject("txtEmailorsdt.IconLeft")));
-            this.txtEmailorsdt.Location = new System.Drawing.Point(56, 127);
-            this.txtEmailorsdt.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtEmailorsdt.Name = "txtEmailorsdt";
-            this.txtEmailorsdt.PlaceholderText = "Email hoặc số điện thoại";
-            this.txtEmailorsdt.SelectedText = "";
-            this.txtEmailorsdt.Size = new System.Drawing.Size(229, 48);
-            this.txtEmailorsdt.TabIndex = 2;
+            this.txtEmail.BorderRadius = 8;
+            this.txtEmail.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtEmail.DefaultText = "";
+            this.txtEmail.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtEmail.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtEmail.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtEmail.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtEmail.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtEmail.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtEmail.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtEmail.IconLeft = ((System.Drawing.Image)(resources.GetObject("txtEmail.IconLeft")));
+            this.txtEmail.Location = new System.Drawing.Point(56, 127);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.PlaceholderText = "Email hoặc số điện thoại";
+            this.txtEmail.SelectedText = "";
+            this.txtEmail.Size = new System.Drawing.Size(229, 48);
+            this.txtEmail.TabIndex = 2;
             // 
             // guna2HtmlLabel2
             // 
+            this.guna2HtmlLabel2.AutoSize = false;
             this.guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel2.Location = new System.Drawing.Point(36, 62);
+            this.guna2HtmlLabel2.ForeColor = System.Drawing.Color.Black;
+            this.guna2HtmlLabel2.Location = new System.Drawing.Point(36, 73);
             this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            this.guna2HtmlLabel2.Size = new System.Drawing.Size(135, 18);
+            this.guna2HtmlLabel2.Size = new System.Drawing.Size(311, 30);
             this.guna2HtmlLabel2.TabIndex = 1;
             this.guna2HtmlLabel2.Text = "Chào mừng bạn trở lại!";
             // 
             // guna2HtmlLabel1
             // 
+            this.guna2HtmlLabel1.AutoSize = false;
             this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel1.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel1.Location = new System.Drawing.Point(22, 9);
+            this.guna2HtmlLabel1.ForeColor = System.Drawing.Color.Black;
+            this.guna2HtmlLabel1.Location = new System.Drawing.Point(22, 20);
             this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            this.guna2HtmlLabel1.Size = new System.Drawing.Size(172, 47);
+            this.guna2HtmlLabel1.Size = new System.Drawing.Size(325, 69);
             this.guna2HtmlLabel1.TabIndex = 0;
             this.guna2HtmlLabel1.Text = "Đăng nhập";
             // 
@@ -237,10 +270,12 @@
         private Guna.UI2.WinForms.Guna2Panel pnlLoginContainer;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel3;
-        private Guna.UI2.WinForms.Guna2CheckBox guna2CheckBox1;
+        private Guna.UI2.WinForms.Guna2CheckBox chkGhiNho;
         private Guna.UI2.WinForms.Guna2TextBox txtPassword;
-        private Guna.UI2.WinForms.Guna2TextBox txtEmailorsdt;
+        private Guna.UI2.WinForms.Guna2TextBox txtEmail;
         private Guna.UI2.WinForms.Guna2Button btnDangNhap;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.LinkLabel lnkDangKy;
+        private System.Windows.Forms.LinkLabel lnkQuenMK;
     }
 }

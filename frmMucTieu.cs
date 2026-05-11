@@ -17,56 +17,67 @@ namespace QuanLyChiTieu
 
         private void frmMucTieu_Load(object sender, EventArgs e)
         {
-            LoadData();
+            // Tạo cột cho DataGridView
+            dgvMucTieu.ColumnCount = 3;
+
+            dgvMucTieu.Columns[0].Name = "Tên mục tiêu";
+            dgvMucTieu.Columns[1].Name = "Số tiền cần đạt";
+            dgvMucTieu.Columns[2].Name = "Hạn chót";
+
+            dgvMucTieu.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            // Không cho sửa trực tiếp
+            dgvMucTieu.ReadOnly = true;
+
+            // Chọn full dòng
+            dgvMucTieu.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
-        private void LoadData()
+        private void guna2Button1_Click(object sender, EventArgs e)
         {
-            // Đổ dữ liệu vào DataGridView (dgvMucTieu)
-            dgvMucTieu.DataSource = _bll.LayDanhSach(maNguoiDungHienTai);
+            string tenMucTieu = txtTenMucTieu.Text.Trim();
+            string soTien = txtSoTienMucTieu.Text.Trim();
+            string hanChot = dtpHanChot.Value.ToShortDateString();
 
-            // Định dạng lại các cột tiền cho đẹp
-            if (dgvMucTieu.Columns.Contains("SoTienCanDat"))
-                dgvMucTieu.Columns["SoTienCanDat"].DefaultCellStyle.Format = "N0";
-            if (dgvMucTieu.Columns.Contains("SoTienHienCo"))
-                dgvMucTieu.Columns["SoTienHienCo"].DefaultCellStyle.Format = "N0";
-        }
-
-        // Nút "Thêm mục tiêu" (Nút xanh đậm trong ảnh của bạn)
-        private void btnThemMucTieu_Click(object sender, EventArgs e)
-        {
-            try
+            // Kiểm tra rỗng
+            if (tenMucTieu == "" || soTien == "")
             {
-                // 1. Thu thập dữ liệu và khởi tạo đối tượng đúng cú pháp
-                MucTieuDTO mt = new MucTieuDTO
-                {
-                    TenMucTieu = txtTenMucTieu.Text.Trim(),
-                    SoTienCanDat = decimal.Parse(txtSoTienMucTieu.Text),
-                    HanChot = dtpHanChot.Value,
-                    SoTienHienCo = 0,
-                    // Gán trực tiếp Session vào đây, bỏ cái dòng mt.MaNguoiDung cũ đi
-                    MaNguoiDung = Session.MaNguoiDung
-                };
-
-                // 2. Lưu vào DB thông qua BLL
-                if (_bll.Them(mt))
-                {
-                    MessageBox.Show("Đã thêm mục tiêu mới! Chúc bạn sớm hoàn thành.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadData();
-                    ClearInput();
-                }
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!",
+                                "Thông báo",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                return;
             }
-            catch (Exception ex)
+
+            // Kiểm tra số tiền có phải số không
+            if (!double.TryParse(soTien, out double tien))
             {
-                MessageBox.Show("Vui lòng kiểm tra lại số tiền nhập vào hoặc kết nối mạng!");
+                MessageBox.Show("Số tiền không hợp lệ!",
+                                "Lỗi",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                txtSoTienMucTieu.Focus();
+                return;
             }
-        }
 
-        private void ClearInput()
-        {
+            // Thêm dữ liệu vào DataGridView
+            dgvMucTieu.Rows.Add(
+                tenMucTieu,
+                tien.ToString("N0") + " VNĐ",
+                hanChot
+            );
+
+            MessageBox.Show("Thêm mục tiêu thành công!",
+                            "Thông báo",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+
+            // Reset input
             txtTenMucTieu.Clear();
             txtSoTienMucTieu.Clear();
             dtpHanChot.Value = DateTime.Now;
+
+            txtTenMucTieu.Focus();
         }
     }
 }

@@ -20,90 +20,61 @@ namespace QuanLyChiTieu
 
         private void frmDanhMuc_Load(object sender, EventArgs e)
         {
-            pnlInput.Visible = false; // Ẩn panel nhập liệu khi mới vào
-            LoadData();
+            cboLoaiDanhMuc.Items.Add("Thu nhập");
+            cboLoaiDanhMuc.Items.Add("Chi tiêu");
+
+            cboLoaiDanhMuc.SelectedIndex = 0;
+
+            dgvDanhMuc.Rows.Add("Ăn uống", "Chi tiêu");
+            dgvDanhMuc.Rows.Add("Lương", "Thu nhập");
         }
 
-        // --- TẢI DỮ LIỆU ---
-        private void LoadData()
+        private void btnThemDanhMuc_Click(object sender, EventArgs e)
         {
-            var dsFull = bllDM.LayDanhSachDanhMuc();
+            string tenDanhMuc = txtTenDanhMuc.Text.Trim();
+            string loaiDanhMuc = cboLoaiDanhMuc.Text;
 
-            // Phải khớp từng chữ, từng dấu với Items trong ComboBox và Database
-            dgvdmchi.DataSource = dsFull.Where(x => x.LoaiGiaoDich == "Chi tiêu").ToList();
-            dgvdmthu.DataSource = dsFull.Where(x => x.LoaiGiaoDich == "Thu nhập").ToList();
-        }
-
-        // --- NÚT THÊM DANH MỤC (Nút to ở ngoài) ---
-        
-
-        // --- NÚT LƯU (Trong panel) ---
-        private void btnLuu_Click(object sender, EventArgs e)
-        {// 1. Kiểm tra Tên danh mục
-
-            if (string.IsNullOrWhiteSpace(txtTenDanhMuc.Text))
+            if (string.IsNullOrEmpty(tenDanhMuc))
             {
-                MessageBox.Show("Vui lòng nhập tên danh mục!");
+                MessageBox.Show(
+                    "Vui lòng nhập tên danh mục!",
+                    "Thông báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                txtTenDanhMuc.Focus();
                 return;
             }
 
-            DanhMucDTO dm = new DanhMucDTO
-            {
-                TenDanhMuc = txtTenDanhMuc.Text.Trim(),
-                LoaiGiaoDich = cmbLoai.Text, // PHẢI gán vào LoaiGiaoDich để trùng với cột DB
-                Loai = cmbLoai.Text,         // Gán thêm Loai để phục vụ việc lọc dsFull.Where
-                MaNguoiDung = Session.MaNguoiDung
-            };
+            dgvDanhMuc.Rows.Add(tenDanhMuc, loaiDanhMuc);
 
-            if (bllDM.LuuDanhMuc(dm))
-            {
-                MessageBox.Show("Lưu thành công!");
-                pnlInput.Visible = false;
-                LoadData(); // Nạp lại bảng
-            }
+            MessageBox.Show(
+                "Thêm danh mục thành công!",
+                "Thông báo",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
+
+            txtTenDanhMuc.Clear();
+            cboLoaiDanhMuc.SelectedIndex = 0;
+            txtTenDanhMuc.Focus();
         }
 
-        // --- NÚT HỦY (Trong panel) ---
+        private void btnLuu_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                "Đã lưu danh mục!",
+                "Thông báo",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
+        }
+
         private void btnHuy_Click(object sender, EventArgs e)
         {
-            pnlInput.Visible = false; // Đóng panel, không làm gì cả
+            txtTenDanhMuc.Clear();
+            cboLoaiDanhMuc.SelectedIndex = 0;
         }
-
-        private void btnthemdm_Click(object sender, EventArgs e)
-        {
-            // 1. Lấy ra lá Tab đang được người dùng mở từ cái TabControl lớn
-            // Thay 'tabControl1' bằng tên cái TabControl của bạn
-            // 1. Xác định tab đang mở là Chi tiêu hay Thu nhập
-            // tabControlDanhMuc là tên Guna2TabControl của bạn trong ảnh
-            TabPage activeTab = tabControlDanhMuc.SelectedTab;
-            if (activeTab != null)
-            {
-                pnlInput.Parent = activeTab;
-                pnlInput.Visible = true;
-
-                // QUAN TRỌNG: Đẩy panel lên lớp trên cùng để nhận được chuột
-                pnlInput.BringToFront();
-
-                // Đảm bảo panel không bị ẩn bởi các control khác
-                pnlInput.Focus();
-
-                txtTenDanhMuc.Clear();
-
-                // Căn giữa panel trong tab
-                pnlInput.Left = (activeTab.Width - pnlInput.Width) / 2;
-                pnlInput.Top = (activeTab.Height - pnlInput.Height) / 2;
-
-                // 4. Tự động chọn loại trong ComboBox dựa vào tab
-                if (activeTab.Name == "tabChiTieu")
-                    cmbLoai.Text = "Chi tiêu";
-                else
-                    cmbLoai.Text = "Thu nhập";
-
-                txtTenDanhMuc.Focus();
-            }
-        }
-
-
-
     }
 }
