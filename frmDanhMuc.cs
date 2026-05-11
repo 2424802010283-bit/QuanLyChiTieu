@@ -86,32 +86,31 @@ namespace QuanLyChiTieu
         {
             // 1. Lấy ra lá Tab đang được người dùng mở từ cái TabControl lớn
             // Thay 'tabControl1' bằng tên cái TabControl của bạn
-            TabPage currentTab = tabControlDanhMuc.SelectedTab;
+            // 1. Xác định tab đang mở là Chi tiêu hay Thu nhập
+            // tabControlDanhMuc là tên Guna2TabControl của bạn trong ảnh
+            TabPage activeTab = tabControlDanhMuc.SelectedTab;
 
-            if (currentTab == null) return;
-
-            // 2. Gán panel vào lá Tab đó
-            pnlInput.Parent = currentTab;
-            pnlInput.BringToFront();
-
-            // 3. Căn giữa panel
-            pnlInput.Left = (currentTab.Width - pnlInput.Width) / 2;
-            pnlInput.Top = (currentTab.Height - pnlInput.Height) / 2;
-
-            // 4. Hiển thị và dọn dẹp ô nhập
-            pnlInput.Visible = true;
-            txtTenDanhMuc.Clear();
-            txtTenDanhMuc.Focus();
-
-            // 5. Tự động chọn loại trong ComboBox dựa trên tên Tab hoặc Text của Tab
-            // Kiểm tra Name của Tab (ví dụ tabChiTieu) hoặc Text (ví dụ "Chi tiêu")
-            if (currentTab.Name == "tabChiTieu" || currentTab.Text.Contains("Chi tiêu"))
+            if (activeTab != null)
             {
-                cmbLoai.SelectedIndex = cmbLoai.FindStringExact("Chi tiêu");
-            }
-            else
-            {
-                cmbLoai.SelectedIndex = cmbLoai.FindStringExact("Thu nhập");
+                // 2. Đưa pnlInput vào trong tab đang hiện hữu
+                pnlInput.Parent = activeTab;
+                pnlInput.BringToFront();
+
+                // 3. Hiển thị và xóa dữ liệu cũ
+                pnlInput.Visible = true;
+                txtTenDanhMuc.Clear();
+
+                // Căn giữa panel trong tab
+                pnlInput.Left = (activeTab.Width - pnlInput.Width) / 2;
+                pnlInput.Top = (activeTab.Height - pnlInput.Height) / 2;
+
+                // 4. Tự động chọn loại trong ComboBox dựa vào tab
+                if (activeTab.Name == "tabChiTieu")
+                    cmbLoai.Text = "Chi tiêu";
+                else
+                    cmbLoai.Text = "Thu nhập";
+
+                txtTenDanhMuc.Focus();
             }
         }
 

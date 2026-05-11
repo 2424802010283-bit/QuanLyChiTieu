@@ -5,7 +5,6 @@ using System.Data.SqlClient;
 using System.Collections.Generic;
 
 
-
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -63,6 +62,49 @@ namespace QuanLyChiTieu.DAL
                 new SqlParameter("@MatKhau", matKhauMoi)
             };
             return DataProvider.ExecuteNonQuery(sql, pms);
+        }
+        public NguoiDungDTO KiemTraDangNhap(string email, string matKhau)
+        {
+            // Sử dụng cột Email thay vì EmailOrSDT
+            string sql = "SELECT * FROM NguoiDung WHERE Email = @email AND MatKhau = @matKhau";
+            SqlParameter[] pms = {
+            new SqlParameter("@email", email),
+            new SqlParameter("@matKhau", matKhau)
+        };
+
+            DataTable dt = DataProvider.ExecuteQuery(sql, pms);
+            if (dt.Rows.Count > 0)
+            {
+                DataRow r = dt.Rows[0];
+                return new NguoiDungDTO
+                {
+                    MaNguoiDung = (int)r["MaNguoiDung"],
+                    HoTen = r["HoTen"].ToString(),
+                    Email = r["Email"].ToString(),
+                    MatKhau = r["MatKhau"].ToString()
+                };
+            }
+            return null;
+        }
+
+        // Kiểm tra tồn tại theo Email
+        public bool KiemTraTonTai(string email)
+        {
+            string sql = "SELECT COUNT(*) FROM NguoiDung WHERE Email = @email";
+            DataTable dt = DataProvider.ExecuteQuery(sql, new SqlParameter[] { new SqlParameter("@email", email) });
+            return (int)dt.Rows[0][0] > 0;
+        }
+
+        // Cập nhật hàm Đăng ký để lưu vào cột Email
+        public bool DangKy(NguoiDungDTO nd)
+        {
+            string sql = "INSERT INTO NguoiDung(HoTen, Email, MatKhau) VALUES(@HoTen, @Email, @Pass)";
+            SqlParameter[] pms = {
+            new SqlParameter("@HoTen", nd.HoTen),
+            new SqlParameter("@Email", nd.Email),
+            new SqlParameter("@Pass", nd.MatKhau)
+        };
+            return DataProvider.ExecuteNonQuery(sql, pms) > 0;
         }
     }
 }

@@ -1,28 +1,30 @@
-﻿using OfficeOpenXml; // Thêm thư viện này để cấu hình bản quyền
-using QuanLyChiTieu.DTO;
+﻿using QuanLyChiTieu.DTO;
 using System;
 using System.Windows.Forms;
+
 namespace QuanLyChiTieu
 {
     public partial class frmMain : Form
     {
         private NguoiDungDTO currentUser;
+        private Form currentFormChild;
 
         public frmMain()
         {
             InitializeComponent();
         }
 
-        // Constructor overload để nhận thông tin người dùng từ form đăng nhập
+        // Nhận thông tin người dùng từ login
         public frmMain(NguoiDungDTO user) : this()
         {
             currentUser = user;
-            // TODO: Sử dụng currentUser.VaiTro hoặc currentUser.HoTen để phân quyền/hiển thị nếu cần
+            if (currentUser != null)
+            {
+                txtHoTen.Text = currentUser.HoTen;
+                txtEmail.Text = currentUser.Email;
+            }
         }
 
-        private Form currentFormChild;
-
-        // Hàm mở Form con vào panel (Giữ nguyên của bạn)
         private void OpenChildForm(Form childForm)
         {
             if (currentFormChild != null)
@@ -35,51 +37,117 @@ namespace QuanLyChiTieu
             childForm.FormBorderStyle = FormBorderStyle.None;
             childForm.Dock = DockStyle.Fill;
 
-            pnBody.Controls.Add(childForm);
+            pnBody.Controls.Add(childForm); // pnBody là cái panel trắng bóc của bạn
             pnBody.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
         }
 
-        // Lúc vừa chạy phần mềm, tự động mở thẳng vào trang Tổng Quan
         private void frmMain_Load(object sender, EventArgs e)
+        {
+            // Hiển thị tên và email người dùng đăng nhập (nếu có)
+            if (currentUser != null)
+            {
+                txtHoTen.Text = currentUser.HoTen;
+                txtEmail.Text = currentUser.Email; // Hoặc currentUser.EmailOrSDT tùy DTO của bạn
+            }
+
+            // GỌI DÒNG NÀY ĐỂ HIỆN TRANG TỔNG QUAN NGAY LẬP TỨC
+            OpenChildForm(new frmTongQuan());
+
+            // (Tùy chọn) Đổi màu nút Dashboard để người dùng biết đang ở trang này
+            btnDashboard.Checked = true;
+        }
+
+        // --- CÁC SỰ KIỆN CLICK NÚT TRÊN SIDEBAR ---
+
+        // Mở Dashboard (Tổng quan)
+        private void btnDashboard_Click(object sender, EventArgs e)
         {
             OpenChildForm(new frmTongQuan());
         }
 
-        // Nút mở trang Danh mục
-        private void btnDanhMuc_Click_1(object sender, EventArgs e)
+        // Mở Giao Dịch
+        private void btnGiaoDich_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmGiaoDich());
+        }
+
+        // Mở Thu Nhập
+        private void btnThuNhap_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmThuNhap());
+        }
+
+        // Mở Chi Tiêu
+        private void btnChiTieu_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmChiTieu());
+        }
+
+        // Mở Ngân Sách
+        private void btnNganSach_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmNganSach());
+        }
+
+        // Mở Mục Tiêu
+        private void btnMucTieu_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmMucTieu());
+        }
+
+        // Mở Danh Mục (Nơi có cái Panel thêm danh mục bạn cần)
+        private void btnDanhMuc_Click(object sender, EventArgs e)
         {
             OpenChildForm(new frmDanhMuc());
         }
 
-        // TÍNH NĂNG MỚI: BẠN NHỚ KÉO THÊM 1 NÚT BÊN TRÁI ĐẶT TÊN LÀ btnTongQuan NHÉ
-        private void btnTongQuan_Click(object sender, EventArgs e)
+        // Mở Báo Cáo
+        private void btnBaoCao_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new frmTongQuan());
+            OpenChildForm(new frmBaoCao());
         }
 
-        
-        private void btnCaiDat_Click(object sender, EventArgs e)
-        {
-            OpenChildForm(new frmCaiDat());
-        }
-
-
-
-
-        // Nút Giao dịch bây giờ sẽ dùng chung hàm OpenChildForm để đồng bộ
-
-
+        // Mở Thống Kê
         private void btnThongKe_Click(object sender, EventArgs e)
         {
             OpenChildForm(new frmThongKe());
         }
 
-        private void btnGiaoDich_Click(object sender, EventArgs e)
+        private void btnDangXuat_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new frmGiaoDich());
+            DialogResult result = MessageBox.Show("Bạn có muốn đăng xuất không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                // 1. Xóa thông tin phiên làm việc
+                Session.MaNguoiDung = 0;
+                Session.HoTen = null;
 
+                // 2. Tìm lại form Login đã bị ẩn và hiện nó lên
+                Form loginForm = null;
+                foreach (Form f in Application.OpenForms)
+                {
+                    if (f is frmlogin)
+                    {
+                        loginForm = f;
+                        break;
+                    }
+                }
+
+                if (loginForm != null)
+                {
+                    loginForm.Show(); // Hiện lại form đăng nhập
+                    this.Dispose();   // Giải phóng bộ nhớ form Main (không dùng this.Close() vì có thể làm tắt app)
+                }
+                else
+                {
+                    // Trường hợp không tìm thấy (hiếm gặp), khởi tạo mới
+                    frmlogin newLogin = new frmlogin();
+                    newLogin.Show();
+                    this.Dispose();
+                }
+            }
         }
     }
 }

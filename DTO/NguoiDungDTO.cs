@@ -17,6 +17,7 @@ namespace QuanLyChiTieu.DTO
         public DateTime? NgaySinh { get; set; }
         public string DiaChi { get; set; }
         public DateTime NgayTao { get; set; }
+        public string EmailOrSDT { get; set; }
     }
     }
 

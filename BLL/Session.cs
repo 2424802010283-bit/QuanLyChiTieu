@@ -6,12 +6,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using QuanLyChiTieu.DAL;
-namespace QuanLyChiTieu.BLL
-{
-    public static class Session
+
+    namespace QuanLyChiTieu
     {
-        public static NguoiDungDTO CurrentUser { get; set; }
-        public static int MaNguoiDung => CurrentUser?.MaNguoiDung ?? 0;
+        public static class Session
+        {
+            public static int MaNguoiDung { get; set; }
+            public static string HoTen { get; set; }
+        }
     }
-    
-}
+
+
+
