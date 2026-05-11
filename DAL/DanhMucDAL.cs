@@ -1,81 +1,96 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
-using System.Configuration; // Dùng để đọc App.config
 using QuanLyChiTieu.DTO;
+
 namespace QuanLyChiTieu.DAL
 {
     public class DanhMucDAL
     {
-        // Lấy chuỗi kết nối cực kỳ chuyên nghiệp
-        private string strConn = ConfigurationManager.ConnectionStrings["ChuoiKetNoi"].ConnectionString;
+        // =========================================================
+        // PHẦN 1: CÁC HÀM BỔ SUNG CHO KHỚP VỚI DanhMucBLL ĐANG GỌI
 
         public List<DanhMucDTO> LayDanhSachDanhMuc()
         {
-            List<DanhMucDTO> list = new List<DanhMucDTO>();
-            using (SqlConnection conn = new SqlConnection(strConn))
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM DanhMuc", conn);
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    DanhMucDTO dm = new DanhMucDTO();
-                    dm.MaDM = (int)reader["MaDM"];
-                    dm.TenDM = reader["TenDM"].ToString();
-                    dm.Loai = reader["Loai"].ToString();
-                    list.Add(dm);
-                }
-            }
+            var list = new List<DanhMucDTO>();
+            DataTable dt = DataProvider.ExecuteQuery("SELECT * FROM DanhMuc");
+            foreach (DataRow r in dt.Rows) list.Add(Map(r));
             return list;
         }
-        public bool ThemDanhMuc(DanhMucDTO dm)
-        {
-            // 1. Khai báo câu lệnh SQL
-            string query = "INSERT INTO DanhMuc (TenDM, Loai) VALUES (@ten, @loai)";
 
-            // 2. Sử dụng kết nối (Sử dụng biến chuỗi kết nối của bạn, ví dụ: connString)
-            using (SqlConnection conn = new SqlConnection(strConn))
+        // Lấy danh mục theo User
+        public List<DanhMucDTO> GetByUser(int maNguoiDung)
             {
-                try
-                {
-                    // 3. Tạo đối tượng Command và truyền tham số để chống SQL Injection
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@ten", dm.TenDM);
-                    cmd.Parameters.AddWithValue("@loai", dm.Loai);
-
-                    // 4. Mở kết nối và thực thi
-                    conn.Open();
-                    int result = cmd.ExecuteNonQuery(); // Trả về số dòng bị tác động
-
-                    // 5. Trả về true nếu thêm thành công (result > 0)
-                    return result > 0;
+            var list = new List<DanhMucDTO>();
+            DataTable dt = DataProvider.ExecuteQuery(
+                "SELECT * FROM DanhMuc WHERE MaNguoiDung=@Ma",
+                new SqlParameter[] { new SqlParameter("@Ma", maNguoiDung) });
+            foreach (DataRow r in dt.Rows) list.Add(Map(r));
+            return list;
                 }
-                catch (Exception)
+
+        // Lấy danh mục theo Loại (Thu/Chi)
+        public List<DanhMucDTO> GetByLoai(int maNguoiDung, string loai)
                 {
-                    // Nếu có lỗi (trùng tên, mất kết nối...) thì trả về false
-                    return false;
-                }
-            }
+            var list = new List<DanhMucDTO>();
+            DataTable dt = DataProvider.ExecuteQuery(
+                "SELECT * FROM DanhMuc WHERE MaNguoiDung=@Ma AND LoaiGiaoDich=@Loai",
+                new SqlParameter[] {
+                    new SqlParameter("@Ma",   maNguoiDung),
+                    new SqlParameter("@Loai", loai)
+                });
+            foreach (DataRow r in dt.Rows) list.Add(Map(r));
+            return list;
         }
         public List<string> LayTenTatCaDanhMuc()
-        {
-            List<string> list = new List<string>();
-            string query = "SELECT TenDM FROM DanhMuc";
-            DataTable dt = DAL.DataProvider.Instance.ExecuteQuery(query);
-            if (dt != null && dt.Rows.Count > 0)
             {
-                foreach (DataRow row in dt.Rows)
+            var list = new List<string>();
+            DataTable dt = DataProvider.ExecuteQuery("SELECT TenDanhMuc FROM DanhMuc");
+            foreach (DataRow r in dt.Rows)
                 {
-                    list.Add(row["TenDM"].ToString());
+                list.Add(r["TenDanhMuc"].ToString());
                 }
             }
             return list;
         }
 
+        // Thêm danh mục
+        public int Them(DanhMucDTO dm)
+        {
+            string sql = @"INSERT INTO DanhMuc(MaNguoiDung, TenDanhMuc, LoaiGiaoDich, MauSac, GhiChu)
+                           VALUES(@Ma, @Ten, @Loai, @Mau, @GhiChu)";
+            var pms = new SqlParameter[] {
+                new SqlParameter("@Ma",     dm.MaNguoiDung == 0 ? 1 : dm.MaNguoiDung), // Tạm fix User = 1 nếu quên truyền
+                new SqlParameter("@Ten",    dm.TenDanhMuc),
+                new SqlParameter("@Loai",   dm.LoaiGiaoDich),
+                new SqlParameter("@Mau",    (object)dm.MauSac  ?? DBNull.Value),
+                new SqlParameter("@GhiChu", (object)dm.GhiChu  ?? DBNull.Value)
+            };
+            return DataProvider.ExecuteNonQuery(sql, pms);
+    }
+
+        // Sửa danh mục
+        public int Sua(DanhMucDTO dm)
+        {
+            string sql = @"UPDATE DanhMuc SET TenDanhMuc=@Ten, LoaiGiaoDich=@Loai,
+                           MauSac=@Mau, GhiChu=@GhiChu WHERE MaDanhMuc=@MaDM";
+            var pms = new SqlParameter[] {
+                new SqlParameter("@MaDM",   dm.MaDanhMuc),
+                new SqlParameter("@Ten",    dm.TenDanhMuc),
+                new SqlParameter("@Loai",   dm.LoaiGiaoDich),
+                new SqlParameter("@Mau",    (object)dm.MauSac  ?? DBNull.Value),
+                new SqlParameter("@GhiChu", (object)dm.GhiChu  ?? DBNull.Value)
+            };
+            return DataProvider.ExecuteNonQuery(sql, pms);
+}
+
+        // Xóa danh mục
+        public int Xoa(int maDanhMuc)
+        {
+            return DataProvider.ExecuteNonQuery(
+                "DELETE FROM DanhMuc WHERE MaDanhMuc=@Ma",
+                new SqlParameter[] { new SqlParameter("@Ma", maDanhMuc) });
+        }
     }
 }

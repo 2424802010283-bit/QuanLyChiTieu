@@ -1,10 +1,6 @@
-﻿using System;
-using System.Data;
-using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
 using QuanLyChiTieu.BLL;
-using OfficeOpenXml;
+using QuanLyChiTieu.DTO;
 
 namespace QuanLyChiTieu
 {
@@ -29,88 +25,69 @@ namespace QuanLyChiTieu
         {
             try
             {
-                guna2DataGridView1.DataSource = bll.LayLichSuGiaoDich();
-                long tongChi = bll.LayTongChiTieu();
-                // Nếu có label hiện tổng: lblTongChi.Text = tongChi.ToString("N0") + " đ";
+                dgvGiaoDich.DataSource = bllGD.LayDanhSachGiaoDich();
+
+                // Tùy chỉnh hiển thị DataGridView (Ẩn các cột mã ID không cần thiết)
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi tải dữ liệu: " + ex.Message);
+                MessageBox.Show("Lỗi khi tải dữ liệu giao dịch: " + ex.Message);
             }
         }
 
         // --- NÚT THÊM (Smart Input) ---
         // ✅ FIX: Dùng guna2TextBox1 CHỈ để nhập Smart Input
         //         guna2TextBox2 (ô tìm kiếm riêng) dùng để lọc
-        private void btnthem_Click(object sender, EventArgs e)
         {
-            string input = guna2TextBox1.Text;
-            if (string.IsNullOrWhiteSpace(input))
+            // Xóa trắng các ô nhập liệu
+            txtSoTien.Clear();
             {
-                MessageBox.Show("Vui lòng nhập giao dịch, ví dụ: 'Ăn sáng 30k'");
+                cboDanhMuc.SelectedIndex = 0;
                 return;
             }
 
-            var result = bll.PhanTichChuoi(input);
+            if (!decimal.TryParse(txtSoTien.Text, out decimal soTien))
 
-            if (result.soTien > 0)
+            GiaoDichDTO gd = new GiaoDichDTO
             {
-                if (bll.LuuGiaoDich(result.soTien, result.ghiChu))
+                SoTien = soTien,
                 {
-                    MessageBox.Show($"Đã thêm: {result.ghiChu} - {result.soTien:N0} đ", "Thành công");
-                    guna2TextBox1.Clear();
+                MessageBox.Show("Thêm giao dịch thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadData();
                 }
                 else
                 {
-                    MessageBox.Show("Lưu thất bại, kiểm tra kết nối database!");
+                MessageBox.Show("Thêm giao dịch thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else
-            {
-                MessageBox.Show("Không nhận ra số tiền.\nVui lòng nhập đúng định dạng: 'Ăn sáng 30k' hoặc '150k cafe'");
-            }
-        }
 
         // --- XUẤT EXCEL ---
-        private void btnxuat_Click(object sender, EventArgs e)
         {
             using (SaveFileDialog sfd = new SaveFileDialog()
             {
-                Filter = "Excel Workbook|*.xlsx",
-                FileName = "BaoCaoChiTieu_" + DateTime.Now.ToString("yyyyMMdd") + ".xlsx"
-            })
-            {
-                if (sfd.ShowDialog() == DialogResult.OK)
-                {
-                    try
-                    {
-                        using (ExcelPackage p = new ExcelPackage())
-                        {
-                            var ws = p.Workbook.Worksheets.Add("ChiTieu");
+                MessageBox.Show("Vui lòng chọn một giao dịch từ danh sách để sửa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-                            // Header
-                            for (int i = 0; i < guna2DataGridView1.Columns.Count; i++)
+            if (string.IsNullOrWhiteSpace(txtSoTien.Text) || !decimal.TryParse(txtSoTien.Text, out decimal soTien))
                             {
-                                ws.Cells[1, i + 1].Value = guna2DataGridView1.Columns[i].HeaderText;
-                                ws.Cells[1, i + 1].Style.Font.Bold = true;
-                                ws.Cells[1, i + 1].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
-                                ws.Cells[1, i + 1].Style.Fill.SetBackground(Color.LightBlue);
+                MessageBox.Show("Số tiền không hợp lệ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
                             }
 
-                            // Dữ liệu
-                            for (int i = 0; i < guna2DataGridView1.Rows.Count; i++)
-                                for (int j = 0; j < guna2DataGridView1.Columns.Count; j++)
-                                    ws.Cells[i + 2, j + 1].Value = guna2DataGridView1.Rows[i].Cells[j].Value?.ToString();
+            GiaoDichDTO gd = new GiaoDichDTO
+            {
+                MaGiaoDich = maGiaoDichDangChon,
+                SoTien = soTien,
 
-                            ws.Cells.AutoFitColumns();
-                            File.WriteAllBytes(sfd.FileName, p.GetAsByteArray());
-                            MessageBox.Show("Xuất file Excel thành công!");
+            if (bllGD.Sua(gd))
+            {
+                MessageBox.Show("Cập nhật giao dịch thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
-                    catch (Exception ex)
+
                     {
-                        MessageBox.Show("Lỗi xuất file: " + ex.Message);
+                MessageBox.Show("Vui lòng chọn giao dịch cần xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
             }

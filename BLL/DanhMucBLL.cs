@@ -8,29 +8,27 @@ using QuanLyChiTieu.DTO;
 using System.Data;
 using System.Configuration; // Đừng quên dòng này nhé!
 
-// Lấy chuỗi từ App.config
+
 namespace QuanLyChiTieu.BLL
 {
-    // ✅ FIX: Đổi từ internal -> public
     public class DanhMucBLL
     {
-        DanhMucDAL dal = new DanhMucDAL();
+        private readonly DanhMucDAL _dal = new DanhMucDAL();
 
         public List<DanhMucDTO> LayDanhSachDanhMuc()
         {
-            return dal.LayDanhSachDanhMuc();
+            return _dal.LayDanhSachDanhMuc();
         }
 
         public bool LuuDanhMuc(DanhMucDTO dm)
         {
-            return dal.ThemDanhMuc(dm);
+            return _dal.ThemDanhMuc(dm);
         }
 
         public List<string> LayTenTatCaDanhMuc()
         {
-            return dal.LayTenTatCaDanhMuc();
+            return _dal.LayTenTatCaDanhMuc();
         }
 
     }
-
 }

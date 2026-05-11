@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using QuanLyChiTieu.DTO;
-using OfficeOpenXml; // Thêm thư viện này để cấu hình bản quyền
 
 namespace QuanLyChiTieu
 {
@@ -11,7 +9,7 @@ namespace QuanLyChiTieu
 
         public frmMain()
         {
-            InitializeComponent();        }
+            InitializeComponent();
 
         // Constructor overload để nhận thông tin người dùng từ form đăng nhập
         public frmMain(NguoiDungDTO user) : this()

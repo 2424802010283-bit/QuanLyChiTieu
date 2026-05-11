@@ -1,4 +1,3 @@
-﻿using System.Data;
 using QuanLyChiTieu.DAL;
 
 namespace QuanLyChiTieu.BLL
@@ -14,7 +13,6 @@ namespace QuanLyChiTieu.BLL
             return dal.LayDanhSachGiaoDich();
         }
 
-        // Lấy tổng chi tiêu tháng hiện tại
         public long LayTongChiTieu()
         {
             return dal.LayTongChiTieuThangNay();

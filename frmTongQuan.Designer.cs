@@ -39,8 +39,6 @@
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.guna2Panel9 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Panel7 = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2Panel13 = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2HtmlLabel21 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.guna2Panel6 = new Guna.UI2.WinForms.Guna2Panel();
             this.pbKhac = new Guna.UI2.WinForms.Guna2ProgressBar();
@@ -217,24 +215,6 @@
             this.guna2Panel7.ShadowDecoration.BorderRadius = 15;
             this.guna2Panel7.Size = new System.Drawing.Size(692, 380);
             this.guna2Panel7.TabIndex = 2;
-            // 
-            // guna2Panel13
-            // 
-            this.guna2Panel13.Location = new System.Drawing.Point(0, 0);
-            this.guna2Panel13.Name = "guna2Panel13";
-            this.guna2Panel13.Size = new System.Drawing.Size(200, 100);
-            this.guna2Panel13.TabIndex = 0;
-            // 
-            // guna2HtmlLabel21
-            // 
-            this.guna2HtmlLabel21.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel21.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel21.ForeColor = System.Drawing.Color.Black;
-            this.guna2HtmlLabel21.Location = new System.Drawing.Point(3, 3);
-            this.guna2HtmlLabel21.Name = "guna2HtmlLabel21";
-            this.guna2HtmlLabel21.Size = new System.Drawing.Size(267, 25);
-            this.guna2HtmlLabel21.TabIndex = 4;
-            this.guna2HtmlLabel21.Text = "Biểu đồ thu chi 6 tháng gần nhất";
             // 
             // tableLayoutPanel2
             // 
@@ -513,7 +493,6 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.Controls.Add(this.guna2Panel12, 0, 1);
-            this.tableLayoutPanel4.Controls.Add(this.guna2HtmlLabel20, 0, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(929, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -936,14 +915,12 @@
             this.guna2Panel10.PerformLayout();
             this.guna2Panel9.ResumeLayout(false);
             this.guna2Panel7.ResumeLayout(false);
-            this.guna2Panel7.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.guna2Panel6.ResumeLayout(false);
             this.guna2Panel6.PerformLayout();
             this.guna2Panel8.ResumeLayout(false);
             this.guna2Panel8.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel4.PerformLayout();
             this.guna2Panel12.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -1030,6 +1007,5 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel7;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel13;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel21;
     }
 }
