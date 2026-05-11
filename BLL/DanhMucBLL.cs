@@ -26,18 +26,18 @@ namespace QuanLyChiTieu.BLL
         // 1. Hàm Form đang gọi để tải dữ liệu lên bảng
         public List<DanhMucDTO> LayDanhSachDanhMuc()
         {
-            // Tạm thời gán mã người dùng = 1 (sau này bạn có màn hình Đăng Nhập thì thay bằng Session)
-            int maNguoiDung = 1;
+            // Phải lấy đúng ID của người đang đăng nhập
+            int maNguoiDung = Session.MaNguoiDung;
             return _dal.GetByUser(maNguoiDung);
         }
 
         // 2. Hàm Form đang gọi khi nhấn nút "Thêm"
         public bool LuuDanhMuc(DanhMucDTO dm)
         {
-            // Gán luôn mã người dùng = 1 trước khi lưu vào DataBase
-            dm.MaNguoiDung = 1;
-            return Them(dm); // Gọi lại hàm Them() ở trên
-        }
+            // Nếu dm.MaNguoiDung đã được gán từ Form (Session) thì không gán lại = 1 nữa
+            if (dm.MaNguoiDung <= 0) dm.MaNguoiDung = 1;
 
+            return Them(dm);
+        }
     }
 }

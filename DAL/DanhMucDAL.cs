@@ -42,15 +42,15 @@ namespace QuanLyChiTieu.DAL
 
         public int Them(DanhMucDTO dm)
         {
-            string sql = @"INSERT INTO DanhMuc(MaNguoiDung,TenDanhMuc,LoaiGiaoDich,MauSac,GhiChu)
-                           VALUES(@Ma,@Ten,@Loai,@Mau,@GhiChu)";
+            string sql = @"INSERT INTO DanhMuc(MaNguoiDung, TenDanhMuc, LoaiGiaoDich, MauSac, GhiChu)
+                   VALUES(@Ma, @Ten, @Loai, @Mau, @GhiChu)";
             var pms = new SqlParameter[] {
-                new SqlParameter("@Ma",    dm.MaNguoiDung),
-                new SqlParameter("@Ten",   dm.TenDanhMuc),
-                new SqlParameter("@Loai",  dm.LoaiGiaoDich),
-                new SqlParameter("@Mau",   (object)dm.MauSac  ?? DBNull.Value),
-                new SqlParameter("@GhiChu",(object)dm.GhiChu  ?? DBNull.Value)
-            };
+        new SqlParameter("@Ma",    dm.MaNguoiDung),
+        new SqlParameter("@Ten",   dm.TenDanhMuc),
+        new SqlParameter("@Loai",  dm.LoaiGiaoDich), // Dùng LoaiGiaoDich ở đây
+        new SqlParameter("@Mau",   (object)dm.MauSac  ?? DBNull.Value),
+        new SqlParameter("@GhiChu",(object)dm.GhiChu  ?? DBNull.Value)
+    };
             return DataProvider.ExecuteNonQuery(sql, pms);
         }
 

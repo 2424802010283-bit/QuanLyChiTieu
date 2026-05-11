@@ -19,5 +19,6 @@
         // Nếu bạn có thêm icon hoặc màu sắc thì thêm ở đây
         public string BieuTuong { get; set; }
 
+
     }
     }

@@ -27,20 +27,11 @@ namespace QuanLyChiTieu
         // --- TẢI DỮ LIỆU ---
         private void LoadData()
         {
-            try
-            {
-                var dsFull = bllDM.LayDanhSachDanhMuc();
+            var dsFull = bllDM.LayDanhSachDanhMuc();
 
-                // Nạp cho Tab Chi Tiêu
-                dgvdmchi.DataSource = dsFull.Where(x => x.Loai == "Chi tiêu").ToList();
-
-                // Nạp cho Tab Thu Nhập
-                dgvdmthu.DataSource = dsFull.Where(x => x.Loai == "Thu nhập").ToList();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi: " + ex.Message);
-            }
+            // Phải khớp từng chữ, từng dấu với Items trong ComboBox và Database
+            dgvdmchi.DataSource = dsFull.Where(x => x.LoaiGiaoDich == "Chi tiêu").ToList();
+            dgvdmthu.DataSource = dsFull.Where(x => x.LoaiGiaoDich == "Thu nhập").ToList();
         }
 
         // --- NÚT THÊM DANH MỤC (Nút to ở ngoài) ---
@@ -48,31 +39,26 @@ namespace QuanLyChiTieu
 
         // --- NÚT LƯU (Trong panel) ---
         private void btnLuu_Click(object sender, EventArgs e)
-        {
-            // 1. Kiểm tra đầu vào
+        {// 1. Kiểm tra Tên danh mục
             if (string.IsNullOrWhiteSpace(txtTenDanhMuc.Text))
             {
                 MessageBox.Show("Vui lòng nhập tên danh mục!");
                 return;
             }
 
-            // 2. Tạo đối tượng lưu trữ
             DanhMucDTO dm = new DanhMucDTO
             {
                 TenDanhMuc = txtTenDanhMuc.Text.Trim(),
-                Loai = cmbLoai.Text // Lấy từ ComboBox đã tự chọn theo Tab
+                LoaiGiaoDich = cmbLoai.Text, // PHẢI gán vào LoaiGiaoDich để trùng với cột DB
+                Loai = cmbLoai.Text,         // Gán thêm Loai để phục vụ việc lọc dsFull.Where
+                MaNguoiDung = Session.MaNguoiDung
             };
 
-            // 3. Gọi BLL lưu vào Database
             if (bllDM.LuuDanhMuc(dm))
             {
                 MessageBox.Show("Lưu thành công!");
-                pnlInput.Visible = false; // Ẩn panel sau khi lưu xong
-                LoadData(); // Tải lại bảng dữ liệu
-            }
-            else
-            {
-                MessageBox.Show("Lưu thất bại!");
+                pnlInput.Visible = false;
+                LoadData(); // Nạp lại bảng
             }
         }
 
@@ -89,15 +75,17 @@ namespace QuanLyChiTieu
             // 1. Xác định tab đang mở là Chi tiêu hay Thu nhập
             // tabControlDanhMuc là tên Guna2TabControl của bạn trong ảnh
             TabPage activeTab = tabControlDanhMuc.SelectedTab;
-
             if (activeTab != null)
             {
-                // 2. Đưa pnlInput vào trong tab đang hiện hữu
                 pnlInput.Parent = activeTab;
+                pnlInput.Visible = true;
+
+                // QUAN TRỌNG: Đẩy panel lên lớp trên cùng để nhận được chuột
                 pnlInput.BringToFront();
 
-                // 3. Hiển thị và xóa dữ liệu cũ
-                pnlInput.Visible = true;
+                // Đảm bảo panel không bị ẩn bởi các control khác
+                pnlInput.Focus();
+
                 txtTenDanhMuc.Clear();
 
                 // Căn giữa panel trong tab
