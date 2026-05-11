@@ -38,5 +38,6 @@ namespace QuanLyChiTieu.BLL
             dm.MaNguoiDung = 1;
             return Them(dm); // Gọi lại hàm Them() ở trên
         }
+
     }
 }

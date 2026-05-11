@@ -58,15 +58,15 @@
             this.btnLuu.Text = "Lưu cài đặt";
             this.btnLuu.UseVisualStyleBackColor = true;
             // 
-            // frmThongKe
+            // frmCaiDat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(998, 588);
             this.Controls.Add(this.btnLuu);
             this.Controls.Add(this.txtNganSach);
             this.Controls.Add(this.label1);
-            this.Name = "frmThongKe";
+            this.Name = "frmCaiDat";
             this.Text = "frmThongKe";
             this.ResumeLayout(false);
             this.PerformLayout();

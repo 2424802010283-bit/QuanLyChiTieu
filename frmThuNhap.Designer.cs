@@ -41,13 +41,6 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
             this.dgvThuNhap = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.colNgayThuNhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDanhMuc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTaiKhoan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSoTienThuNhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colGhiChu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSua = new System.Windows.Forms.DataGridViewImageColumn();
-            this.colXoa = new System.Windows.Forms.DataGridViewImageColumn();
             this.guna2Panel6 = new Guna.UI2.WinForms.Guna2Panel();
             this.txtThuNhap_GhiChu = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtThuNhap_SoTien = new Guna.UI2.WinForms.Guna2TextBox();
@@ -69,6 +62,13 @@
             this.guna2DateTimePicker2 = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.colXoa = new System.Windows.Forms.DataGridViewImageColumn();
+            this.colSua = new System.Windows.Forms.DataGridViewImageColumn();
+            this.colGhiChu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSoTienThuNhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTaiKhoan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDanhMuc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNgayThuNhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.guna2Panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.guna2Panel2.SuspendLayout();
@@ -241,57 +241,6 @@
             this.dgvThuNhap.ThemeStyle.RowsStyle.Height = 24;
             this.dgvThuNhap.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
             this.dgvThuNhap.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            // 
-            // colNgayThuNhap
-            // 
-            this.colNgayThuNhap.DataPropertyName = "colNgayThuNhap";
-            this.colNgayThuNhap.HeaderText = "Ngày";
-            this.colNgayThuNhap.MinimumWidth = 6;
-            this.colNgayThuNhap.Name = "colNgayThuNhap";
-            // 
-            // colDanhMuc
-            // 
-            this.colDanhMuc.DataPropertyName = "colDanhMuc";
-            this.colDanhMuc.HeaderText = "Danh mục";
-            this.colDanhMuc.MinimumWidth = 6;
-            this.colDanhMuc.Name = "colDanhMuc";
-            // 
-            // colTaiKhoan
-            // 
-            this.colTaiKhoan.DataPropertyName = "colTaiKhoan";
-            this.colTaiKhoan.HeaderText = "Tài khoản";
-            this.colTaiKhoan.MinimumWidth = 6;
-            this.colTaiKhoan.Name = "colTaiKhoan";
-            // 
-            // colSoTienThuNhap
-            // 
-            this.colSoTienThuNhap.DataPropertyName = "colSoTienThuNhap";
-            this.colSoTienThuNhap.HeaderText = "Số tiền";
-            this.colSoTienThuNhap.MinimumWidth = 6;
-            this.colSoTienThuNhap.Name = "colSoTienThuNhap";
-            // 
-            // colGhiChu
-            // 
-            this.colGhiChu.DataPropertyName = "colGhiChu";
-            this.colGhiChu.HeaderText = "Ghi chú";
-            this.colGhiChu.MinimumWidth = 6;
-            this.colGhiChu.Name = "colGhiChu";
-            // 
-            // colSua
-            // 
-            this.colSua.DataPropertyName = "colSua";
-            this.colSua.HeaderText = "Sửa";
-            this.colSua.Image = ((System.Drawing.Image)(resources.GetObject("colSua.Image")));
-            this.colSua.MinimumWidth = 6;
-            this.colSua.Name = "colSua";
-            // 
-            // colXoa
-            // 
-            this.colXoa.DataPropertyName = "colXoa";
-            this.colXoa.HeaderText = "Xóa";
-            this.colXoa.Image = ((System.Drawing.Image)(resources.GetObject("colXoa.Image")));
-            this.colXoa.MinimumWidth = 6;
-            this.colXoa.Name = "colXoa";
             // 
             // guna2Panel6
             // 
@@ -573,6 +522,57 @@
             this.guna2HtmlLabel4.TabIndex = 0;
             this.guna2HtmlLabel4.Text = "Tổng số giao dịch";
             // 
+            // colXoa
+            // 
+            this.colXoa.DataPropertyName = "colXoa";
+            this.colXoa.HeaderText = "Xóa";
+            this.colXoa.Image = ((System.Drawing.Image)(resources.GetObject("colXoa.Image")));
+            this.colXoa.MinimumWidth = 6;
+            this.colXoa.Name = "colXoa";
+            // 
+            // colSua
+            // 
+            this.colSua.DataPropertyName = "colSua";
+            this.colSua.HeaderText = "Sửa";
+            this.colSua.Image = ((System.Drawing.Image)(resources.GetObject("colSua.Image")));
+            this.colSua.MinimumWidth = 6;
+            this.colSua.Name = "colSua";
+            // 
+            // colGhiChu
+            // 
+            this.colGhiChu.DataPropertyName = "colGhiChu";
+            this.colGhiChu.HeaderText = "Ghi chú";
+            this.colGhiChu.MinimumWidth = 6;
+            this.colGhiChu.Name = "colGhiChu";
+            // 
+            // colSoTienThuNhap
+            // 
+            this.colSoTienThuNhap.DataPropertyName = "colSoTienThuNhap";
+            this.colSoTienThuNhap.HeaderText = "Số tiền";
+            this.colSoTienThuNhap.MinimumWidth = 6;
+            this.colSoTienThuNhap.Name = "colSoTienThuNhap";
+            // 
+            // colTaiKhoan
+            // 
+            this.colTaiKhoan.DataPropertyName = "colTaiKhoan";
+            this.colTaiKhoan.HeaderText = "Tài khoản";
+            this.colTaiKhoan.MinimumWidth = 6;
+            this.colTaiKhoan.Name = "colTaiKhoan";
+            // 
+            // colDanhMuc
+            // 
+            this.colDanhMuc.DataPropertyName = "colDanhMuc";
+            this.colDanhMuc.HeaderText = "Danh mục";
+            this.colDanhMuc.MinimumWidth = 6;
+            this.colDanhMuc.Name = "colDanhMuc";
+            // 
+            // colNgayThuNhap
+            // 
+            this.colNgayThuNhap.DataPropertyName = "colNgayThuNhap";
+            this.colNgayThuNhap.HeaderText = "Ngày";
+            this.colNgayThuNhap.MinimumWidth = 6;
+            this.colNgayThuNhap.Name = "colNgayThuNhap";
+            // 
             // frmThuNhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -619,13 +619,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel5;
         private Guna.UI2.WinForms.Guna2DataGridView dgvThuNhap;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colNgayThuNhap;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDanhMuc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colTaiKhoan;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSoTienThuNhap;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colGhiChu;
-        private System.Windows.Forms.DataGridViewImageColumn colSua;
-        private System.Windows.Forms.DataGridViewImageColumn colXoa;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel6;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel11;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel10;
@@ -637,5 +630,12 @@
         private Guna.UI2.WinForms.Guna2ComboBox cboThuNhap_DanhMuc;
         private Guna.UI2.WinForms.Guna2TextBox txtThuNhap_GhiChu;
         private Guna.UI2.WinForms.Guna2TextBox txtThuNhap_SoTien;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colNgayThuNhap;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDanhMuc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTaiKhoan;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSoTienThuNhap;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colGhiChu;
+        private System.Windows.Forms.DataGridViewImageColumn colSua;
+        private System.Windows.Forms.DataGridViewImageColumn colXoa;
     }
 }

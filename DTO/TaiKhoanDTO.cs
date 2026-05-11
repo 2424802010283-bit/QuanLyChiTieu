@@ -13,7 +13,7 @@ namespace QuanLyChiTieu.DTO
         public string TenTaiKhoan { get; set; }
         public string LoaiTaiKhoan { get; set; }
         public decimal SoDu { get; set; }
-        public string GhiChu { get; set; }
+        public string GhiChu { get; set; } = string.Empty;
     }
 }
 

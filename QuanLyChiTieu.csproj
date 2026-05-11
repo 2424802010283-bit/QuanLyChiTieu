@@ -209,6 +209,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmBaoCao.resx">
+      <DependentUpon>frmBaoCao.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmChiTieu.resx">
       <DependentUpon>frmChiTieu.cs</DependentUpon>
     </EmbeddedResource>

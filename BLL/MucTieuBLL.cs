@@ -19,14 +19,41 @@ namespace QuanLyChiTieu.BLL
     public class MucTieuBLL
     {
         private readonly MucTieuDAL _dal = new MucTieuDAL();
-        public DataTable GetAll(int maNguoiDung) => _dal.GetAll(maNguoiDung);
-        public bool Them(int maNguoiDung, string ten, decimal mucTieu, DateTime? han)
-            => _dal.Them(maNguoiDung, ten, mucTieu, han) > 0;
-        public bool CapNhatTichLuy(int maMucTieu, decimal soTienThem)
-            => _dal.CapNhatTichLuy(maMucTieu, soTienThem) > 0;
-        public bool HoanThanh(int maMucTieu)
-            => _dal.CapNhatTrangThai(maMucTieu, "Hoàn thành") > 0;
-        public bool Xoa(int maMucTieu) => _dal.Xoa(maMucTieu) > 0;
+
+        public List<MucTieuDTO> LayDanhSach(int maNguoiDung)
+        {
+            // 1. Gọi DAL để lấy DataTable (Giả sử hàm trong DAL của bạn tên là GetMucTieu)
+            DataTable dt = _dal.GetMucTieu(maNguoiDung);
+            List<MucTieuDTO> ds = new List<MucTieuDTO>();
+
+            // 2. Duyệt từng dòng trong DataTable để nạp vào List DTO
+            foreach (DataRow row in dt.Rows)
+            {
+                MucTieuDTO mt = new MucTieuDTO
+                {
+                    MaMucTieu = Convert.ToInt32(row["MaMucTieu"]),
+                    TenMucTieu = row["TenMucTieu"].ToString(),
+                    SoTienCanDat = Convert.ToDecimal(row["SoTienCanDat"]),
+                    SoTienHienCo = Convert.ToDecimal(row["SoTienHienCo"]),
+                    HanChot = Convert.ToDateTime(row["HanChot"]),
+                    MaNguoiDung = Convert.ToInt32(row["MaNguoiDung"])
+                };
+                ds.Add(mt);
+            }
+            return ds;
+        }
+
+        public bool Them(MucTieuDTO mt)
+        {
+            if (string.IsNullOrEmpty(mt.TenMucTieu) || mt.SoTienCanDat <= 0) return false;
+            // Bây giờ DAL.Them đã nhận mt, nên sẽ không còn lỗi tham số
+            return _dal.Them(mt) > 0;
+        }
+
+        public bool Xoa(int maMucTieu)
+        {
+            return _dal.Xoa(maMucTieu) > 0;
+        }
     
 }
-}
+    }

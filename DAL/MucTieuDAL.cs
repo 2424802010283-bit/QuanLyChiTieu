@@ -8,20 +8,25 @@ namespace QuanLyChiTieu.DAL
 {
     public class MucTieuDAL
     {
-        public DataTable GetAll(int maNguoiDung)
-            => DataProvider.ExecuteSP("SP_GetMucTieu",
-                new SqlParameter[] { new SqlParameter("@MaNguoiDung", maNguoiDung) });
-
-        public int Them(int maNguoiDung, string tenMucTieu, decimal soTienMucTieu, DateTime? han)
+        // Sử dụng hàm GetMucTieu này thay vì GetAll
+        public DataTable GetMucTieu(int maNguoiDung)
         {
-            string sql = @"INSERT INTO MucTieu(MaNguoiDung,TenMucTieu,SoTienMucTieu,SoTienDaTichLuy,HanHoanThanh)
-                           VALUES(@Ma,@Ten,@MucTieu,0,@Han)";
+            string sql = "SELECT * FROM MucTieu WHERE MaNguoiDung = @ma";
+            // Sửa db thành DataProvider
+            return DataProvider.ExecuteQuery(sql, new SqlParameter[] { new SqlParameter("@ma", maNguoiDung) });
+        }
+
+        // Sửa hàm Them để nhận DTO giúp BLL gọi dễ hơn
+        public int Them(MucTieuDTO mt)
+        {
+            string sql = @"INSERT INTO MucTieu(MaNguoiDung, TenMucTieu, SoTienMucTieu, SoTienDaTichLuy, HanHoanThanh)
+                       VALUES(@Ma, @Ten, @MucTieu, 0, @Han)";
             var pms = new SqlParameter[] {
-                new SqlParameter("@Ma",      maNguoiDung),
-                new SqlParameter("@Ten",     tenMucTieu),
-                new SqlParameter("@MucTieu", soTienMucTieu),
-                new SqlParameter("@Han",     (object)han ?? DBNull.Value)
-            };
+            new SqlParameter("@Ma",      mt.MaNguoiDung),
+            new SqlParameter("@Ten",     mt.TenMucTieu),
+            new SqlParameter("@MucTieu", mt.SoTienCanDat),
+            new SqlParameter("@Han",     (object)mt.HanChot ?? DBNull.Value)
+        };
             return DataProvider.ExecuteNonQuery(sql, pms);
         }
 
@@ -51,5 +56,6 @@ namespace QuanLyChiTieu.DAL
                 "DELETE FROM MucTieu WHERE MaMucTieu=@Ma",
                 new SqlParameter[] { new SqlParameter("@Ma", maMucTieu) });
         }
+       
+        }
     }
-}

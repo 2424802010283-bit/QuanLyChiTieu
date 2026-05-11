@@ -198,18 +198,28 @@ namespace QuanLyChiTieu
         // ─── Mục tiêu ───
         private void LoadMucTieu()
         {
-            DataTable dt = _mtBLL.GetAll(Session.MaNguoiDung);
+            // Lấy danh sách từ BLL
+            List<MucTieuDTO> dsMucTieu = GetDt();
+
             dgvMucTieu.Rows.Clear();
-            foreach (DataRow r in dt.Rows)
+
+            foreach (var mt in dsMucTieu)
             {
                 dgvMucTieu.Rows.Add(
-                    r["TenMucTieu"].ToString(),
-                    ((decimal)r["SoTienMucTieu"]).ToString("N0") + " đ",
-                    ((decimal)r["SoTienDaTichLuy"]).ToString("N0") + " đ",
-                    r["HanHoanThanh"] == DBNull.Value ? "—" : ((DateTime)r["HanHoanThanh"]).ToString("dd/MM/yyyy"),
-                    Convert.ToInt32(r["PhanTram"]) + "%",
-                    r["TrangThai"].ToString());
+                    mt.TenMucTieu,
+                    mt.SoTienCanDat.ToString("N0") + " đ",
+                    mt.SoTienHienCo.ToString("N0") + " đ",
+                    mt.HanChot.ToString("dd/MM/yyyy"),
+                    mt.TienDo,    // Đây là thuộc tính tự tính toán trong DTO
+                    mt.TrangThai  // Đây là thuộc tính tự tính toán trong DTO
+                );
             }
+        }
+
+        private List<MucTieuDTO> GetDt()
+        {
+            // Đổi GetAll thành LayDanhSach để khớp với BLL
+            return _mtBLL.LayDanhSach(Session.MaNguoiDung);
         }
     }
 }

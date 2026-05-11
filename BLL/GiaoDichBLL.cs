@@ -73,5 +73,12 @@ namespace QuanLyChiTieu.BLL
             // Gọi hàm Sua() từ DAL vừa tạo ở trên
             return _gdDAL.Sua(gd) > 0;
         }
+        // Trong GiaoDichBLL.cs
+        // SỬA LỖI _dal TẠI ĐÂY: Đổi _dal thành _gdDAL
+        public DataTable LayThongKeTheoDanhMuc(int maNguoiDung, int thang, int nam)
+        {
+            // Gọi đúng biến _gdDAL đã khai báo ở đầu class
+            return _gdDAL.GetThongKeTheoThang(maNguoiDung, nam);
+        }
     }
 }

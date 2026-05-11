@@ -14,5 +14,10 @@
         public string LoaiGiaoDich { get; set; }
         public string MauSac { get; set; }
         public string GhiChu { get; set; }
+        // ĐÂY LÀ DÒNG BỊ THIẾU:
+        public string Loai { get; set; }
+        // Nếu bạn có thêm icon hoặc màu sắc thì thêm ở đây
+        public string BieuTuong { get; set; }
+
     }
     }
