@@ -36,9 +36,9 @@ namespace QuanLyChiTieu.BLL
         {
             int maGd = _gdDAL.Them(gd);
             if (maGd == 0) return false;
-            if (gd.LoaiGiaoDich == "Thu")
+            if (gd.LoaiGiaoDich == "Thu nhap")
                 _tkDAL.CapNhatSoDu(gd.MaTaiKhoan, gd.SoTien);
-            else if (gd.LoaiGiaoDich == "Chi")
+            else if (gd.LoaiGiaoDich == "Chi tieu")
                 _tkDAL.CapNhatSoDu(gd.MaTaiKhoan, -gd.SoTien);
             else if (gd.LoaiGiaoDich == "ChuyenTien" && gd.MaTaiKhoanNhan.HasValue)
             {
@@ -51,9 +51,9 @@ namespace QuanLyChiTieu.BLL
         public bool Xoa(GiaoDichDTO gd)
         {
             if (_gdDAL.Xoa(gd.MaGiaoDich) == 0) return false;
-            if (gd.LoaiGiaoDich == "Thu")
+            if (gd.LoaiGiaoDich == "Thu nhap")
                 _tkDAL.CapNhatSoDu(gd.MaTaiKhoan, -gd.SoTien);
-            else if (gd.LoaiGiaoDich == "Chi")
+            else if (gd.LoaiGiaoDich == "Chi tieu")
                 _tkDAL.CapNhatSoDu(gd.MaTaiKhoan, gd.SoTien);
             else if (gd.LoaiGiaoDich == "ChuyenTien" && gd.MaTaiKhoanNhan.HasValue)
             {

@@ -74,7 +74,7 @@ namespace QuanLyChiTieu
                 MaNguoiDung = Session.MaNguoiDung,
                 MaTaiKhoan = (int)cboChiTieu_TaiKhoan.SelectedValue,
                 MaDanhMuc = (int)cboChiTieu_DanhMuc.SelectedValue,
-                LoaiGiaoDich = "Chi Tiêu",
+                LoaiGiaoDich = "Chi tiêu",
                 NgayGiaoDich = dateTimePicker_NgayChi.Value,
                 SoTien = soTien,
                 MoTa = txtChiTieu_GhiChu.Text.Trim()
