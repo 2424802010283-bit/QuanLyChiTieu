@@ -18,7 +18,7 @@ namespace QuanLyChiTieu.DAL
     {
         // ⚠️ Đổi tên server cho đúng máy bạn
         private static readonly string connectionString =
-    @"Data Source=LAPTOP-C861HF1M\SQLEXPRESS01;Initial Catalog=QuanLyChiTieu;Integrated Security=True";
+    @"Data Source=DESKTOP-A3K3KQ3\MSSQLSERVER01;Initial Catalog=QuanLyChiTieu;Integrated Security=True";
 
         public static SqlConnection GetConnection() => new SqlConnection(connectionString);
 
