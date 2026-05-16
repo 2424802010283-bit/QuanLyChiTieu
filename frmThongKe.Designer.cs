@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.pnlHeader = new Guna.UI2.WinForms.Guna2Panel();
             this.cboThongKe_Nam = new Guna.UI2.WinForms.Guna2ComboBox();
             this.cboThongKe_Thang = new Guna.UI2.WinForms.Guna2ComboBox();
@@ -42,6 +42,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Panel8 = new Guna.UI2.WinForms.Guna2Panel();
+            this.myChartBienDong = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.guna2Panel7 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2HtmlLabel15 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
@@ -57,6 +58,7 @@
             this.lblTop1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
+            this.myChartThuChi = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.guna2Panel6 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2HtmlLabel12 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel11 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -69,20 +71,18 @@
             this.esfef = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblTongThuNhap = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.myChartThuChi = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.myChartBienDong = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.pnlHeader.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.guna2Panel5.SuspendLayout();
             this.guna2Panel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.myChartBienDong)).BeginInit();
             this.guna2Panel7.SuspendLayout();
             this.guna2Panel4.SuspendLayout();
             this.guna2Panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.myChartThuChi)).BeginInit();
             this.guna2Panel6.SuspendLayout();
             this.guna2Panel1.SuspendLayout();
             this.guna2Panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.myChartThuChi)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.myChartBienDong)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlHeader
@@ -132,22 +132,24 @@
             // 
             // guna2HtmlLabel14
             // 
+            this.guna2HtmlLabel14.AutoSize = false;
             this.guna2HtmlLabel14.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel14.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel14.ForeColor = System.Drawing.Color.Black;
             this.guna2HtmlLabel14.Location = new System.Drawing.Point(15, 48);
             this.guna2HtmlLabel14.Name = "guna2HtmlLabel14";
-            this.guna2HtmlLabel14.Size = new System.Drawing.Size(157, 25);
+            this.guna2HtmlLabel14.Size = new System.Drawing.Size(345, 41);
             this.guna2HtmlLabel14.TabIndex = 4;
             this.guna2HtmlLabel14.Text = "Tổng quan tài chính";
             // 
             // guna2HtmlLabel13
             // 
+            this.guna2HtmlLabel13.AutoSize = false;
             this.guna2HtmlLabel13.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel13.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel13.Location = new System.Drawing.Point(12, 3);
             this.guna2HtmlLabel13.Name = "guna2HtmlLabel13";
-            this.guna2HtmlLabel13.Size = new System.Drawing.Size(122, 39);
+            this.guna2HtmlLabel13.Size = new System.Drawing.Size(257, 39);
             this.guna2HtmlLabel13.TabIndex = 3;
             this.guna2HtmlLabel13.Text = "Thống kê";
             // 
@@ -194,6 +196,23 @@
             this.guna2Panel8.Size = new System.Drawing.Size(664, 242);
             this.guna2Panel8.TabIndex = 4;
             // 
+            // myChartBienDong
+            // 
+            chartArea3.Name = "ChartArea1";
+            this.myChartBienDong.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.myChartBienDong.Legends.Add(legend3);
+            this.myChartBienDong.Location = new System.Drawing.Point(152, 36);
+            this.myChartBienDong.Name = "myChartBienDong";
+            this.myChartBienDong.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Light;
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.myChartBienDong.Series.Add(series3);
+            this.myChartBienDong.Size = new System.Drawing.Size(300, 300);
+            this.myChartBienDong.TabIndex = 0;
+            this.myChartBienDong.Text = "chart1";
+            // 
             // guna2Panel7
             // 
             this.guna2Panel7.Controls.Add(this.guna2HtmlLabel15);
@@ -205,11 +224,12 @@
             // 
             // guna2HtmlLabel15
             // 
+            this.guna2HtmlLabel15.AutoSize = false;
             this.guna2HtmlLabel15.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel15.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel15.Location = new System.Drawing.Point(18, 3);
             this.guna2HtmlLabel15.Name = "guna2HtmlLabel15";
-            this.guna2HtmlLabel15.Size = new System.Drawing.Size(158, 30);
+            this.guna2HtmlLabel15.Size = new System.Drawing.Size(251, 30);
             this.guna2HtmlLabel15.TabIndex = 2;
             this.guna2HtmlLabel15.Text = "Biến động số dư";
             // 
@@ -354,11 +374,12 @@
             // 
             // guna2HtmlLabel4
             // 
+            this.guna2HtmlLabel4.AutoSize = false;
             this.guna2HtmlLabel4.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel4.Location = new System.Drawing.Point(12, 3);
             this.guna2HtmlLabel4.Name = "guna2HtmlLabel4";
-            this.guna2HtmlLabel4.Size = new System.Drawing.Size(233, 30);
+            this.guna2HtmlLabel4.Size = new System.Drawing.Size(326, 30);
             this.guna2HtmlLabel4.TabIndex = 0;
             this.guna2HtmlLabel4.Text = "Top 5 danh mục chi tiêu";
             // 
@@ -378,6 +399,23 @@
             this.guna2Panel3.Size = new System.Drawing.Size(664, 282);
             this.guna2Panel3.TabIndex = 2;
             // 
+            // myChartThuChi
+            // 
+            chartArea4.Name = "ChartArea1";
+            this.myChartThuChi.ChartAreas.Add(chartArea4);
+            this.myChartThuChi.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend4.Name = "Legend1";
+            this.myChartThuChi.Legends.Add(legend4);
+            this.myChartThuChi.Location = new System.Drawing.Point(0, 40);
+            this.myChartThuChi.Name = "myChartThuChi";
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.myChartThuChi.Series.Add(series4);
+            this.myChartThuChi.Size = new System.Drawing.Size(664, 242);
+            this.myChartThuChi.TabIndex = 3;
+            this.myChartThuChi.Text = "chart1";
+            // 
             // guna2Panel6
             // 
             this.guna2Panel6.Controls.Add(this.guna2HtmlLabel12);
@@ -391,33 +429,36 @@
             // 
             // guna2HtmlLabel12
             // 
+            this.guna2HtmlLabel12.AutoSize = false;
             this.guna2HtmlLabel12.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel12.ForeColor = System.Drawing.Color.Red;
             this.guna2HtmlLabel12.Location = new System.Drawing.Point(513, 11);
             this.guna2HtmlLabel12.Name = "guna2HtmlLabel12";
-            this.guna2HtmlLabel12.Size = new System.Drawing.Size(53, 22);
+            this.guna2HtmlLabel12.Size = new System.Drawing.Size(146, 22);
             this.guna2HtmlLabel12.TabIndex = 4;
             this.guna2HtmlLabel12.Text = "Chi tiêu";
             // 
             // guna2HtmlLabel11
             // 
+            this.guna2HtmlLabel11.AutoSize = false;
             this.guna2HtmlLabel11.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.guna2HtmlLabel11.Location = new System.Drawing.Point(365, 11);
             this.guna2HtmlLabel11.Name = "guna2HtmlLabel11";
-            this.guna2HtmlLabel11.Size = new System.Drawing.Size(64, 22);
+            this.guna2HtmlLabel11.Size = new System.Drawing.Size(157, 22);
             this.guna2HtmlLabel11.TabIndex = 3;
             this.guna2HtmlLabel11.Text = "Thu nhập";
             // 
             // guna2HtmlLabel10
             // 
+            this.guna2HtmlLabel10.AutoSize = false;
             this.guna2HtmlLabel10.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel10.Location = new System.Drawing.Point(18, 3);
             this.guna2HtmlLabel10.Name = "guna2HtmlLabel10";
-            this.guna2HtmlLabel10.Size = new System.Drawing.Size(183, 30);
+            this.guna2HtmlLabel10.Size = new System.Drawing.Size(276, 30);
             this.guna2HtmlLabel10.TabIndex = 2;
             this.guna2HtmlLabel10.Text = "Thu chi theo tháng";
             // 
@@ -458,103 +499,75 @@
             // 
             // lblSoDuRong
             // 
+            this.lblSoDuRong.AutoSize = false;
             this.lblSoDuRong.BackColor = System.Drawing.Color.Transparent;
             this.lblSoDuRong.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSoDuRong.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
             this.lblSoDuRong.Location = new System.Drawing.Point(50, 219);
             this.lblSoDuRong.Name = "lblSoDuRong";
-            this.lblSoDuRong.Size = new System.Drawing.Size(233, 39);
+            this.lblSoDuRong.Size = new System.Drawing.Size(326, 39);
             this.lblSoDuRong.TabIndex = 5;
             this.lblSoDuRong.Text = "guna2HtmlLabel2";
             // 
             // lblTongChiTieu
             // 
+            this.lblTongChiTieu.AutoSize = false;
             this.lblTongChiTieu.BackColor = System.Drawing.Color.Transparent;
             this.lblTongChiTieu.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTongChiTieu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
             this.lblTongChiTieu.Location = new System.Drawing.Point(50, 134);
             this.lblTongChiTieu.Name = "lblTongChiTieu";
-            this.lblTongChiTieu.Size = new System.Drawing.Size(106, 39);
+            this.lblTongChiTieu.Size = new System.Drawing.Size(199, 39);
             this.lblTongChiTieu.TabIndex = 4;
             this.lblTongChiTieu.Text = "dwadad";
             // 
             // awfw
             // 
+            this.awfw.AutoSize = false;
             this.awfw.BackColor = System.Drawing.Color.Transparent;
             this.awfw.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.awfw.ForeColor = System.Drawing.Color.Gray;
             this.awfw.Location = new System.Drawing.Point(14, 188);
             this.awfw.Name = "awfw";
-            this.awfw.Size = new System.Drawing.Size(88, 25);
+            this.awfw.Size = new System.Drawing.Size(181, 25);
             this.awfw.TabIndex = 3;
             this.awfw.Text = "Số dư ròng";
             // 
             // esfef
             // 
+            this.esfef.AutoSize = false;
             this.esfef.BackColor = System.Drawing.Color.Transparent;
             this.esfef.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.esfef.ForeColor = System.Drawing.Color.Gray;
             this.esfef.Location = new System.Drawing.Point(14, 103);
             this.esfef.Name = "esfef";
-            this.esfef.Size = new System.Drawing.Size(103, 25);
+            this.esfef.Size = new System.Drawing.Size(196, 25);
             this.esfef.TabIndex = 2;
             this.esfef.Text = "Tổng chi tiêu";
             // 
             // lblTongThuNhap
             // 
+            this.lblTongThuNhap.AutoSize = false;
             this.lblTongThuNhap.BackColor = System.Drawing.Color.Transparent;
             this.lblTongThuNhap.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTongThuNhap.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(185)))), ((int)(((byte)(129)))));
             this.lblTongThuNhap.Location = new System.Drawing.Point(50, 43);
             this.lblTongThuNhap.Name = "lblTongThuNhap";
-            this.lblTongThuNhap.Size = new System.Drawing.Size(233, 39);
+            this.lblTongThuNhap.Size = new System.Drawing.Size(326, 39);
             this.lblTongThuNhap.TabIndex = 1;
             this.lblTongThuNhap.Text = "guna2HtmlLabel2";
             // 
             // guna2HtmlLabel1
             // 
+            this.guna2HtmlLabel1.AutoSize = false;
             this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel1.ForeColor = System.Drawing.Color.Gray;
             this.guna2HtmlLabel1.Location = new System.Drawing.Point(14, 12);
             this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            this.guna2HtmlLabel1.Size = new System.Drawing.Size(117, 25);
+            this.guna2HtmlLabel1.Size = new System.Drawing.Size(210, 25);
             this.guna2HtmlLabel1.TabIndex = 0;
             this.guna2HtmlLabel1.Text = "Tổng thu nhập";
-            // 
-            // myChartThuChi
-            // 
-            chartArea2.Name = "ChartArea1";
-            this.myChartThuChi.ChartAreas.Add(chartArea2);
-            this.myChartThuChi.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Name = "Legend1";
-            this.myChartThuChi.Legends.Add(legend2);
-            this.myChartThuChi.Location = new System.Drawing.Point(0, 40);
-            this.myChartThuChi.Name = "myChartThuChi";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.myChartThuChi.Series.Add(series2);
-            this.myChartThuChi.Size = new System.Drawing.Size(664, 242);
-            this.myChartThuChi.TabIndex = 3;
-            this.myChartThuChi.Text = "chart1";
-            // 
-            // myChartBienDong
-            // 
-            chartArea1.Name = "ChartArea1";
-            this.myChartBienDong.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.myChartBienDong.Legends.Add(legend1);
-            this.myChartBienDong.Location = new System.Drawing.Point(152, 36);
-            this.myChartBienDong.Name = "myChartBienDong";
-            this.myChartBienDong.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Light;
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.myChartBienDong.Series.Add(series1);
-            this.myChartBienDong.Size = new System.Drawing.Size(300, 300);
-            this.myChartBienDong.TabIndex = 0;
-            this.myChartBienDong.Text = "chart1";
             // 
             // frmThongKe
             // 
@@ -568,22 +581,18 @@
             this.Name = "frmThongKe";
             this.Text = "frmThongKe";
             this.pnlHeader.ResumeLayout(false);
-            this.pnlHeader.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.guna2Panel5.ResumeLayout(false);
             this.guna2Panel8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.myChartBienDong)).EndInit();
             this.guna2Panel7.ResumeLayout(false);
-            this.guna2Panel7.PerformLayout();
             this.guna2Panel4.ResumeLayout(false);
             this.guna2Panel4.PerformLayout();
             this.guna2Panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.myChartThuChi)).EndInit();
             this.guna2Panel6.ResumeLayout(false);
-            this.guna2Panel6.PerformLayout();
             this.guna2Panel1.ResumeLayout(false);
             this.guna2Panel2.ResumeLayout(false);
-            this.guna2Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.myChartThuChi)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.myChartBienDong)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -24,9 +24,9 @@
 
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.lblSubTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -62,21 +62,23 @@
             // 
             // lblSubTitle
             // 
+            this.lblSubTitle.AutoSize = false;
             this.lblSubTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblSubTitle.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblSubTitle.Location = new System.Drawing.Point(20, 60);
             this.lblSubTitle.Name = "lblSubTitle";
-            this.lblSubTitle.Size = new System.Drawing.Size(225, 22);
+            this.lblSubTitle.Size = new System.Drawing.Size(513, 22);
             this.lblSubTitle.TabIndex = 0;
             this.lblSubTitle.Text = "Quản lý danh mục thu chi cá nhân";
             // 
             // lblTitle
             // 
+            this.lblTitle.AutoSize = false;
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold);
             this.lblTitle.Location = new System.Drawing.Point(20, 15);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(131, 39);
+            this.lblTitle.Size = new System.Drawing.Size(335, 39);
             this.lblTitle.TabIndex = 1;
             this.lblTitle.Text = "Danh mục";
             // 
@@ -152,11 +154,12 @@
             // 
             // lblLoaiDanhMuc
             // 
+            this.lblLoaiDanhMuc.AutoSize = false;
             this.lblLoaiDanhMuc.BackColor = System.Drawing.Color.Transparent;
             this.lblLoaiDanhMuc.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.lblLoaiDanhMuc.Location = new System.Drawing.Point(20, 130);
             this.lblLoaiDanhMuc.Name = "lblLoaiDanhMuc";
-            this.lblLoaiDanhMuc.Size = new System.Drawing.Size(103, 22);
+            this.lblLoaiDanhMuc.Size = new System.Drawing.Size(240, 22);
             this.lblLoaiDanhMuc.TabIndex = 3;
             this.lblLoaiDanhMuc.Text = "Loại danh mục";
             // 
@@ -176,11 +179,12 @@
             // 
             // lblTenDanhMuc
             // 
+            this.lblTenDanhMuc.AutoSize = false;
             this.lblTenDanhMuc.BackColor = System.Drawing.Color.Transparent;
             this.lblTenDanhMuc.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.lblTenDanhMuc.Location = new System.Drawing.Point(20, 30);
             this.lblTenDanhMuc.Name = "lblTenDanhMuc";
-            this.lblTenDanhMuc.Size = new System.Drawing.Size(100, 22);
+            this.lblTenDanhMuc.Size = new System.Drawing.Size(240, 22);
             this.lblTenDanhMuc.TabIndex = 5;
             this.lblTenDanhMuc.Text = "Tên danh mục";
             // 
@@ -208,24 +212,24 @@
             // 
             // dgvDanhMuc
             // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.dgvDanhMuc.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            this.dgvDanhMuc.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dgvDanhMuc.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            this.dgvDanhMuc.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvDanhMuc.ColumnHeadersHeight = 35;
             this.dgvDanhMuc.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colTenDanhMuc,
             this.colLoaiDanhMuc});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDanhMuc.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDanhMuc.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvDanhMuc.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDanhMuc.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvDanhMuc.Location = new System.Drawing.Point(0, 0);
@@ -280,10 +284,8 @@
             this.Text = "frmDanhMuc";
             this.Load += new System.EventHandler(this.frmDanhMuc_Load);
             this.guna2Panel1.ResumeLayout(false);
-            this.guna2Panel1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.guna2Panel2.ResumeLayout(false);
-            this.guna2Panel2.PerformLayout();
             this.guna2Panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhMuc)).EndInit();
             this.ResumeLayout(false);

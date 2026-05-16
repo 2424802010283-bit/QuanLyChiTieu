@@ -194,6 +194,7 @@
             // 
             // guna2GroupBox1
             // 
+            this.guna2GroupBox1.BackColor = System.Drawing.Color.Black;
             this.guna2GroupBox1.Controls.Add(this.btnHuy);
             this.guna2GroupBox1.Controls.Add(this.btnLuu);
             this.guna2GroupBox1.Controls.Add(this.txtMoTa);
@@ -306,7 +307,7 @@
             // 
             this.cboDanhMuc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboDanhMuc.BackColor = System.Drawing.Color.Transparent;
+            this.cboDanhMuc.BackColor = System.Drawing.Color.DimGray;
             this.cboDanhMuc.BorderRadius = 10;
             this.cboDanhMuc.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cboDanhMuc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -324,7 +325,7 @@
             // 
             this.cboTaiKhoan.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboTaiKhoan.BackColor = System.Drawing.Color.Transparent;
+            this.cboTaiKhoan.BackColor = System.Drawing.Color.DimGray;
             this.cboTaiKhoan.BorderRadius = 10;
             this.cboTaiKhoan.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cboTaiKhoan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -342,7 +343,7 @@
             // 
             this.cboLoaiGiaoDich.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboLoaiGiaoDich.BackColor = System.Drawing.Color.Transparent;
+            this.cboLoaiGiaoDich.BackColor = System.Drawing.Color.DimGray;
             this.cboLoaiGiaoDich.BorderRadius = 10;
             this.cboLoaiGiaoDich.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cboLoaiGiaoDich.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;

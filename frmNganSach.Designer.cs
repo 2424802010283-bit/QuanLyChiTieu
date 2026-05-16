@@ -23,9 +23,9 @@
 
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.lblSubTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -61,21 +61,23 @@
             // 
             // lblSubTitle
             // 
+            this.lblSubTitle.AutoSize = false;
             this.lblSubTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblSubTitle.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblSubTitle.Location = new System.Drawing.Point(22, 58);
             this.lblSubTitle.Name = "lblSubTitle";
-            this.lblSubTitle.Size = new System.Drawing.Size(202, 22);
+            this.lblSubTitle.Size = new System.Drawing.Size(279, 46);
             this.lblSubTitle.TabIndex = 1;
             this.lblSubTitle.Text = "Quản lý ngân sách hàng tháng";
             // 
             // lblTitle
             // 
+            this.lblTitle.AutoSize = false;
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
             this.lblTitle.Location = new System.Drawing.Point(22, 12);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(149, 43);
+            this.lblTitle.Size = new System.Drawing.Size(226, 67);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Ngân sách";
             // 
@@ -124,11 +126,12 @@
             // 
             // lblTienDaDung
             // 
+            this.lblTienDaDung.AutoSize = false;
             this.lblTienDaDung.BackColor = System.Drawing.Color.Transparent;
             this.lblTienDaDung.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblTienDaDung.Location = new System.Drawing.Point(28, 340);
             this.lblTienDaDung.Name = "lblTienDaDung";
-            this.lblTienDaDung.Size = new System.Drawing.Size(184, 22);
+            this.lblTienDaDung.Size = new System.Drawing.Size(261, 46);
             this.lblTienDaDung.TabIndex = 7;
             this.lblTienDaDung.Text = "Đã dùng 3tr / 5tr ngân sách";
             // 
@@ -197,31 +200,34 @@
             // 
             // lblLoai
             // 
+            this.lblLoai.AutoSize = false;
             this.lblLoai.BackColor = System.Drawing.Color.Transparent;
             this.lblLoai.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.lblLoai.Location = new System.Drawing.Point(28, 162);
             this.lblLoai.Name = "lblLoai";
-            this.lblLoai.Size = new System.Drawing.Size(104, 22);
+            this.lblLoai.Size = new System.Drawing.Size(181, 46);
             this.lblLoai.TabIndex = 2;
             this.lblLoai.Text = "Loại ngân sách";
             // 
             // lblSoTien
             // 
+            this.lblSoTien.AutoSize = false;
             this.lblSoTien.BackColor = System.Drawing.Color.Transparent;
             this.lblSoTien.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.lblSoTien.Location = new System.Drawing.Point(28, 85);
             this.lblSoTien.Name = "lblSoTien";
-            this.lblSoTien.Size = new System.Drawing.Size(75, 22);
+            this.lblSoTien.Size = new System.Drawing.Size(152, 46);
             this.lblSoTien.TabIndex = 1;
             this.lblSoTien.Text = "Ngân sách";
             // 
             // lblThang
             // 
+            this.lblThang.AutoSize = false;
             this.lblThang.BackColor = System.Drawing.Color.Transparent;
             this.lblThang.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.lblThang.Location = new System.Drawing.Point(28, 9);
             this.lblThang.Name = "lblThang";
-            this.lblThang.Size = new System.Drawing.Size(46, 22);
+            this.lblThang.Size = new System.Drawing.Size(123, 46);
             this.lblThang.TabIndex = 0;
             this.lblThang.Text = "Tháng";
             // 
@@ -236,23 +242,23 @@
             // 
             // dgvNganSach
             // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.dgvNganSach.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Navy;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvNganSach.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dgvNganSach.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvNganSach.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvNganSach.ColumnHeadersHeight = 30;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.LightSteelBlue;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvNganSach.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightSteelBlue;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvNganSach.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvNganSach.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvNganSach.GridColor = System.Drawing.Color.LightGray;
             this.dgvNganSach.Location = new System.Drawing.Point(0, 0);
@@ -295,10 +301,8 @@
             this.Text = "frmNganSach";
             this.Load += new System.EventHandler(this.frmNganSach_Load);
             this.guna2Panel1.ResumeLayout(false);
-            this.guna2Panel1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.guna2Panel2.ResumeLayout(false);
-            this.guna2Panel2.PerformLayout();
             this.guna2Panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvNganSach)).EndInit();
             this.ResumeLayout(false);

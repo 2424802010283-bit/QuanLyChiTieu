@@ -30,7 +30,8 @@ namespace QuanLyChiTieu
         private void LoadDanhMuc()
         {
             // Phải là "Chi tiêu" để khớp với Database
-            var list = _dmBLL.GetByLoai(Session.MaNguoiDung, "Chi tiêu");
+            var list = _dmBLL.GetByLoai(Session.MaNguoiDung, "Chi tiêu");     // ✅ đã đúng
+
 
             cboChiTieu_DanhMuc.DataSource = list;
             cboChiTieu_DanhMuc.DisplayMember = "TenDanhMuc";
