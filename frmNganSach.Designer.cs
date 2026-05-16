@@ -299,7 +299,6 @@
             this.Controls.Add(this.guna2Panel1);
             this.Name = "frmNganSach";
             this.Text = "frmNganSach";
-            this.Load += new System.EventHandler(this.frmNganSach_Load);
             this.guna2Panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.guna2Panel2.ResumeLayout(false);
