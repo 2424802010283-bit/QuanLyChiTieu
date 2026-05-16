@@ -1,18 +1,6 @@
-﻿using System;
+﻿using QuanLyChiTieu.DAL;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using System.Data;
-using QuanLyChiTieu.DAL;
-using QuanLyChiTieu.DTO;
-
-using System.Text.RegularExpressions;
-
-
-
-using System.Configuration; // Đừng quên dòng này nhé!
 
 namespace QuanLyChiTieu.BLL
 {

@@ -1,8 +1,7 @@
-﻿using System;
+﻿using QuanLyChiTieu.DTO;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using QuanLyChiTieu.DTO;
 
 namespace QuanLyChiTieu.DAL
 {
