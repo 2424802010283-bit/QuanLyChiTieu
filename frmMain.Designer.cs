@@ -74,7 +74,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(220, 722);
+            this.panel2.Size = new System.Drawing.Size(220, 653);
             this.panel2.TabIndex = 1;
             // 
             // txtEmail
@@ -424,7 +424,7 @@
             this.pnBody.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnBody.Location = new System.Drawing.Point(220, 70);
             this.pnBody.Name = "pnBody";
-            this.pnBody.Size = new System.Drawing.Size(843, 652);
+            this.pnBody.Size = new System.Drawing.Size(962, 583);
             this.pnBody.TabIndex = 2;
             // 
             // panel1
@@ -434,7 +434,7 @@
             this.panel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.panel1.Location = new System.Drawing.Point(220, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(843, 70);
+            this.panel1.Size = new System.Drawing.Size(962, 70);
             this.panel1.TabIndex = 0;
             // 
             // frmMain
@@ -442,7 +442,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(23)))), ((int)(((byte)(42)))));
-            this.ClientSize = new System.Drawing.Size(1063, 722);
+            this.ClientSize = new System.Drawing.Size(1182, 653);
             this.Controls.Add(this.pnBody);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);

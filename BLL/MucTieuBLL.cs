@@ -1,18 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using System.Data;
 using QuanLyChiTieu.DAL;
 using QuanLyChiTieu.DTO;
-
-using System.Text.RegularExpressions;
-
-
-
-using System.Configuration; // Đừng quên dòng này nhé!
 
 namespace QuanLyChiTieu.BLL
 {
@@ -20,40 +10,52 @@ namespace QuanLyChiTieu.BLL
     {
         private readonly MucTieuDAL _dal = new MucTieuDAL();
 
+        // 1. Chuyển đổi dữ liệu DataTable từ DAL sang List DTO cho Form giao diện dễ đọc
         public List<MucTieuDTO> LayDanhSach(int maNguoiDung)
         {
-            // 1. Gọi DAL để lấy DataTable (Giả sử hàm trong DAL của bạn tên là GetMucTieu)
             DataTable dt = _dal.GetMucTieu(maNguoiDung);
             List<MucTieuDTO> ds = new List<MucTieuDTO>();
 
-            // 2. Duyệt từng dòng trong DataTable để nạp vào List DTO
             foreach (DataRow row in dt.Rows)
             {
                 MucTieuDTO mt = new MucTieuDTO
                 {
                     MaMucTieu = Convert.ToInt32(row["MaMucTieu"]),
                     TenMucTieu = row["TenMucTieu"].ToString(),
-                    SoTienCanDat = Convert.ToDecimal(row["SoTienCanDat"]),
-                    SoTienHienCo = Convert.ToDecimal(row["SoTienHienCo"]),
-                    HanChot = Convert.ToDateTime(row["HanChot"]),
-                    MaNguoiDung = Convert.ToInt32(row["MaNguoiDung"])
+                    MaNguoiDung = Convert.ToInt32(row["MaNguoiDung"]),
+
+                    // 👉 Gán đúng tên cột trong Database SQL sang biến DTO của C#
+                    SoTienCanDat = Convert.ToDecimal(row["SoTienMucTieu"]),
+                    SoTienHienCo = Convert.ToDecimal(row["SoTienDaTichLuy"]),
+                    HanChot = Convert.ToDateTime(row["HanHoanThanh"])
                 };
                 ds.Add(mt);
             }
             return ds;
         }
 
+        // 2. Kiểm tra logic trước khi Thêm
         public bool Them(MucTieuDTO mt)
         {
-            if (string.IsNullOrEmpty(mt.TenMucTieu) || mt.SoTienCanDat <= 0) return false;
-            // Bây giờ DAL.Them đã nhận mt, nên sẽ không còn lỗi tham số
+            if (string.IsNullOrEmpty(mt.TenMucTieu) || mt.SoTienCanDat <= 0)
+                return false;
+
             return _dal.Them(mt) > 0;
         }
 
+        // 3. Kiểm tra logic trước khi Sửa
+        public bool Sua(MucTieuDTO mt)
+        {
+            if (string.IsNullOrEmpty(mt.TenMucTieu) || mt.SoTienCanDat <= 0)
+                return false;
+
+            return _dal.Sua(mt) > 0;
+        }
+
+        // 4. Gọi lệnh Xóa
         public bool Xoa(int maMucTieu)
         {
             return _dal.Xoa(maMucTieu) > 0;
         }
-    
-}
     }
+}

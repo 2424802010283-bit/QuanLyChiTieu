@@ -92,5 +92,7 @@ namespace QuanLyChiTieu
             cboTaiKhoanTK.Text = ""; txtSoTienTK.Text = ""; txtGhiChuTK.Text = "";
             cboDanhMucTK.SelectedIndex = 0; btnThemTaiKhoan.Text = "+ Thêm tài khoản"; _dangSua = null;
         }
+
+     
     }
 }

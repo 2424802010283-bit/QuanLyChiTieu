@@ -60,21 +60,23 @@
             // 
             // lblSubTitle
             // 
+            this.lblSubTitle.AutoSize = false;
             this.lblSubTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblSubTitle.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblSubTitle.Location = new System.Drawing.Point(20, 60);
             this.lblSubTitle.Name = "lblSubTitle";
-            this.lblSubTitle.Size = new System.Drawing.Size(225, 22);
+            this.lblSubTitle.Size = new System.Drawing.Size(513, 22);
             this.lblSubTitle.TabIndex = 0;
             this.lblSubTitle.Text = "Quản lý danh mục thu chi cá nhân";
             // 
             // lblTitle
             // 
+            this.lblTitle.AutoSize = false;
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold);
             this.lblTitle.Location = new System.Drawing.Point(20, 15);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(131, 39);
+            this.lblTitle.Size = new System.Drawing.Size(335, 39);
             this.lblTitle.TabIndex = 1;
             this.lblTitle.Text = "Danh mục";
             // 
@@ -122,11 +124,12 @@
             // 
             // lblLoaiDanhMuc
             // 
+            this.lblLoaiDanhMuc.AutoSize = false;
             this.lblLoaiDanhMuc.BackColor = System.Drawing.Color.Transparent;
             this.lblLoaiDanhMuc.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.lblLoaiDanhMuc.Location = new System.Drawing.Point(20, 130);
             this.lblLoaiDanhMuc.Name = "lblLoaiDanhMuc";
-            this.lblLoaiDanhMuc.Size = new System.Drawing.Size(103, 22);
+            this.lblLoaiDanhMuc.Size = new System.Drawing.Size(240, 22);
             this.lblLoaiDanhMuc.TabIndex = 3;
             this.lblLoaiDanhMuc.Text = "Loại danh mục";
             // 
@@ -146,11 +149,12 @@
             // 
             // lblTenDanhMuc
             // 
+            this.lblTenDanhMuc.AutoSize = false;
             this.lblTenDanhMuc.BackColor = System.Drawing.Color.Transparent;
             this.lblTenDanhMuc.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.lblTenDanhMuc.Location = new System.Drawing.Point(20, 30);
             this.lblTenDanhMuc.Name = "lblTenDanhMuc";
-            this.lblTenDanhMuc.Size = new System.Drawing.Size(100, 22);
+            this.lblTenDanhMuc.Size = new System.Drawing.Size(240, 22);
             this.lblTenDanhMuc.TabIndex = 5;
             this.lblTenDanhMuc.Text = "Tên danh mục";
             // 
@@ -250,10 +254,8 @@
             this.Text = "frmDanhMuc";
             this.Load += new System.EventHandler(this.frmDanhMuc_Load);
             this.guna2Panel1.ResumeLayout(false);
-            this.guna2Panel1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.guna2Panel2.ResumeLayout(false);
-            this.guna2Panel2.PerformLayout();
             this.guna2Panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhMuc)).EndInit();
             this.ResumeLayout(false);
